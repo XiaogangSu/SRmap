@@ -12,10 +12,23 @@
     <div id="searchbox">
         <input id="searchtext" type="text" name="search" placeholder="请输入关键字">
         <button id="search" type="button">搜索</button>
-        <button id="startbtn" type="button">起点</button>
-        <button id="endbtn" type="button">终点</button>
-        <button id="route" type="button" onclick=routenav()>路径规划</button>
     </div>
+    
+    <!-- 路径导航 -->
+    <table id="route">
+        <tr>
+            <th><button id="startbtn" type="button">选择起点</button></th>
+            <th><input id="startpoint" type="text"></th>
+        </tr>
+        <tr>
+            <td><button id="endbtn" type="button">选择终点</button></td>
+            <td><input id="endpoint" type="text"></td>
+        </tr>
+        <tr>
+            <td><button id="routenav" type="button" onclick=routenav()>路径规划</button></td>
+            <td></td>
+        </tr>
+      </table>
     <script src="./js/main.js"></script>
 
 </body>

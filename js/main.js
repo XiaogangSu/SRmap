@@ -7,7 +7,7 @@ function loadmap(){
     //     center: [116.23954113946161, 40.07172270765838]
     // });
 
-    var map = new mapboxgl.Map({
+    map = new mapboxgl.Map({
         container: 'map',
         style: './style/osmstyle.json',
         center: [116.23954113946161, 40.07172270765838],
@@ -48,10 +48,49 @@ function urlback(urlroute){
     return(urldata);
 }
 
+//获取当前的所有图层
+function getlayer(){
+    var layers = map.getStyle().layers;
+    var layerid=[];
+    for (var i = 0; i < layers.length; i++) {
+        layerid.push(layers[i]['id']);
+    }
+    return(layerid);
+}
+
 //路径规划
 function routenav(){
-    var url = "http://121.199.14.136:8989/route?point=31.7809361,117.1863596&point=31.7732777,117.2451694&type=json&locale=zh-CN&vehicle=car&weighting=fastest&points_encoded=false";
-    var urlbacklog = urlback(url);
-    console.log('test!!');
-    console.log(urlbacklog);
+    var url = "http://121.199.14.136:8989/route?point=40.07150362225707,116.239492893219&point=40.10392189975916,116.30669832229616&type=json&locale=zh-CN&vehicle=car&weighting=fastest&points_encoded=false";
+    var urlbackcor = urlback(url);
+    // console.log(urlbackcor);
+    // 判断是否存在某一图层，若存在则删除
+    var layerids = getlayer();
+    if (layerids.indexOf("route")>1){
+        map.removeLayer('route');
+        map.removeSource('route');
+    }
+    
+    map.addLayer({
+        'id': 'route',
+        'type': 'line',
+        'source': {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                    'type': 'LineString',
+                    'coordinates': urlbackcor
+                }
+            }
+        },
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#888',
+            'line-width': 8
+        }
+    });
 }

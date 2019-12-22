@@ -3,15 +3,14 @@ body {
     padding: 0; 
 }
 #map {
-    position: absolute; 
-    top: 0; 
-    bottom: 0; 
+    height: 100%;
     width: 100%;
 }
 #searchbox{
+    /* width: 600px; */
     position: absolute;
-    /* width: 380px; */
-    margin: 30px;
+    left: 20px;
+    top: 20px;
     font-family: 'Microsoft YaHei';
     font-size: 14px;
 }
@@ -19,7 +18,6 @@ body {
     width: 300px;
     border: 1px solid #e7e4e4;
     height: 32px;
-    float: left;
     background-repeat: no-repeat;
     background-size: 25px;
     background-position:5px center;
@@ -28,33 +26,56 @@ body {
 #search{
     width: 80px;
     height: 32px;
-    float: left;
+    /* float: left; */
     background: black;
     text-align: center;
     color: white;
+}
+
+#route{
+    position: absolute;
+    left: 20px;
+    top: 60px;
+    font-family: 'Microsoft YaHei';
+    font-size: 14px;
 }
 #startbtn{
     width: 80px;
     height: 32px;
-    float: left;
     background: black;
     color: white;
     text-align: center;
     line-height: 32px;
+}
+#startpoint{
+    width: 200px;
+    border: 1px solid #e7e4e4;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position:5px center;
+    padding:0 0 0 20px;
 }
 #endbtn{
     width: 80px;
     height: 32px;
-    float: left;
     background: black;
     color: white;
     text-align: center;
     line-height: 32px;
 }
-#route{
+#endpoint{
+    width: 200px;
+    border: 1px solid #e7e4e4;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position:5px center;
+    padding:0 0 0 20px;
+}
+#routenav{
     width: 80px;
     height: 32px;
-    float: left;
     background: black;
     color: white;
     text-align: center;
