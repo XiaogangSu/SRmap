@@ -27,8 +27,6 @@ function urlback(urlroute){
         dataType: "json", 
         success: function success(retData) {
             var reqdata = retData['paths'][0]["points"]["coordinates"];
-            // console.log("reqdata first:",reqdata[0][0],reqdata[0][1]); 
-            // console.log("reqdata:", reqdata);
             var polylinecor = [];
             //var dynamicpointcor = []
             for (var i=0;i<reqdata.length; i++){
@@ -57,6 +55,24 @@ function getlayer(){
     }
     return(layerid);
 }
+//获取当前时间
+function getnowtime(){
+    var odate=new Date();
+    var year=odate.getFullYear();  //获取年
+    var month=odate.getMonth()+1;  //获取月
+    var date=odate.getDate();  //获取日
+    var day=odate.getDay();  //获取星期
+    var hours=odate.getHours();   //获取时钟
+    var minutes=odate.getMinutes();   //获取分钟
+    var seconds=odate.getSeconds();  //获取秒
+    var nowtime = year.toString()+month.toString()+date.toString()+hours.toString()+minutes.toString()+seconds.toString()
+    return(nowtime)
+}
+
+//获取起点坐标
+function getstartpoint(){
+    console.log('获取起点坐标！');
+}
 
 //路径规划
 function routenav(){
@@ -65,13 +81,23 @@ function routenav(){
     // console.log(urlbackcor);
     // 判断是否存在某一图层，若存在则删除
     var layerids = getlayer();
-    if (layerids.indexOf("route")>1){
-        map.removeLayer('route');
-        map.removeSource('route');
+    console.log(layerids);
+    if (layerids.length>1){
+        for (var i=1; i<layerids.length; i++){
+            map.removeLayer(layerids[i]);
+            map.removeSource(layerids[i]);
+        }
     }
-    
+    // if (layerids.indexOf("route")>1){
+    //     map.removeLayer('route');
+    //     map.removeSource('route');
+    // }
+    var userid='sxg_';
+    var nowtime = getnowtime();
+    var sub = 'route';
+    var routelayerid = userid+sub+nowtime
     map.addLayer({
-        'id': 'route',
+        'id': routelayerid,
         'type': 'line',
         'source': {
             'type': 'geojson',
