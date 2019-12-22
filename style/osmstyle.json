@@ -1,0 +1,46 @@
+{
+    "version": 8,
+    "sources": {
+        "google-tiles": {
+            "type": "raster",
+            "tiles": [
+                "https://mt1.google.cn/maps/vt?lyrs=s%40721&hl=zh-CN&gl=CN&x={x}&y={y}&z={z}"
+            ],
+            "tileSize": 256
+        },
+        "osm-tiles": {
+            "type": "raster",
+            "tiles": [
+                "http://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            ],
+            "tileSize": 256
+        },
+        "gd-tiles": {
+            "type": "raster",
+            "tiles": [
+                "https://webrd03.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scale=1&style=8"
+            ],
+            "tileSize": 256
+        },
+        "tdt-tiles": {
+            "type": "raster",
+            "tiles": [
+                "http://t0.tianditu.gov.cn/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=c018d929cca6f1f36317cdc4fff087ab"
+            ],
+            "tileSize": 256
+        }
+    },
+    
+    "layers": [
+        {
+            "id": "baselayer",
+            "type": "raster",
+            "source": "osm-tiles"
+        }
+    ],
+    "center": [116.23954113946161, 40.07172270765838],
+    "zoom": 15,
+    "pitch": 0,
+    "maxZoom":18,
+    "minZoom":3
+}
