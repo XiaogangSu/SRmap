@@ -48,7 +48,7 @@ body {
     line-height: 32px;
 }
 #startpoint{
-    width: 200px;
+    width: 300px;
     border: 1px solid #e7e4e4;
     height: 32px;
     background-repeat: no-repeat;
@@ -65,7 +65,7 @@ body {
     line-height: 32px;
 }
 #endpoint{
-    width: 200px;
+    width: 300px;
     border: 1px solid #e7e4e4;
     height: 32px;
     background-repeat: no-repeat;

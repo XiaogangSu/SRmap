@@ -73,19 +73,31 @@ function getnowtime(){
 function getstartpoint(){
     console.log('获取起点坐标！');
     map.on('click', function (e) {
-        console.log(JSON.stringify(e.lngLat));
-        // document.getElementById('info').innerHTML =       /* innerHTML 属性设置或返回表格行的开始和结束标签之间的 HTML  */
-        //     // e.point is the x, y coordinates of the mousemove event relative
-        //     // to the top-left corner of the map
-        //     JSON.stringify(e.point) + '<br />' +
-        //         // e.lngLat is the longitude, latitude geographical position of the event
-        //     JSON.stringify(e.lngLat);  /* JSON.stringify() 方法可以将任意的 JavaScript 值序列化成 JSON 字符串 */
+        // var nowcor = JSON.stringify(e.lngLat);
+        var nowcor = e.lngLat;
+        console.log(nowcor);
+        $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    });
+}
+//获取终点坐标
+function getendpoint(){
+    console.log('获取终点坐标！');
+    map.on('click', function (e) {
+        // var nowcor = JSON.stringify(e.lngLat);
+        var nowcor = e.lngLat;
+        console.log(nowcor);
+        $("#endpoint").val(nowcor.lat+','+nowcor.lng);
     });
 }
 
 //路径规划
 function routenav(){
-    var url = "http://121.199.14.136:8989/route?point=40.07150362225707,116.239492893219&point=40.10392189975916,116.30669832229616&type=json&locale=zh-CN&vehicle=car&weighting=fastest&points_encoded=false";
+    var url1 = "http://121.199.14.136:8989/route?point="
+    var url2 = "&type=json&locale=zh-CN&vehicle=car&weighting=fastest&points_encoded=false";
+    var startcor = $("#startpoint").val();
+    var endcor = $("#endpoint").val();
+    var url = url1+startcor+"&point="+endcor+url2;
+    // var url = "http://121.199.14.136:8989/route?point=40.07150362225707,116.239492893219&point=40.10392189975916,116.30669832229616&type=json&locale=zh-CN&vehicle=car&weighting=fastest&points_encoded=false";
     var urlbackcor = urlback(url);
     // console.log(urlbackcor);
     // 判断是否存在某一图层，若存在则删除
