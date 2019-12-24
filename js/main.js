@@ -69,25 +69,39 @@ function getnowtime(){
     return(nowtime)
 }
 
+var start = 0;
+var end = 0;
+function lnglatback(){
+    var cor='';
+    map.on('click', function (e) {
+        console.log('获取点击位置坐标！');
+        cor = e.lngLat;
+        console.log(cor);
+    });
+    return(cor);
+}
 //获取起点坐标
 function getstartpoint(){
     console.log('获取起点坐标！');
-    map.on('click', function (e) {
-        // var nowcor = JSON.stringify(e.lngLat);
-        var nowcor = e.lngLat;
-        console.log(nowcor);
-        $("#startpoint").val(nowcor.lat+','+nowcor.lng);
-    });
+    // var nowcor = '';
+    // map.on('click', function (e) {
+    //     var nowcor = e.lngLat;
+    //     $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    // });
+    var nowcor = lnglatback();
+    console.log(nowcor);
+    $("#startpoint").val(nowcor.lat+','+nowcor.lng);
 }
 //获取终点坐标
 function getendpoint(){
     console.log('获取终点坐标！');
-    map.on('click', function (e) {
-        // var nowcor = JSON.stringify(e.lngLat);
-        var nowcor = e.lngLat;
-        console.log(nowcor);
-        $("#endpoint").val(nowcor.lat+','+nowcor.lng);
-    });
+    // var nowcor = '';
+    // map.on('click', function (e) {
+    //     var nowcor = e.lngLat;
+    //     $("#endpoint").val(nowcor.lat+','+nowcor.lng);
+    // });
+    var nowcor = lnglatback();
+    $("#startpoint").val(nowcor.lat+','+nowcor.lng);
 }
 
 //路径规划
