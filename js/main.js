@@ -1,19 +1,19 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw';
 function loadmap(){
-    map = new mapboxgl.Map({
-        container: 'map',
-        style:'./style/mapbox/style.json',
-        zoom: 15,
-        center: [116.23954113946161, 40.07172270765838]
-    });
-
     // map = new mapboxgl.Map({
     //     container: 'map',
-    //     style: './style/osmstyle.json',
-    //     center: [116.23954113946161, 40.07172270765838],
+    //     style:'./style/mapbox/style.json',
     //     zoom: 15,
-    //     pitch: 0
-    //   });
+    //     center: [116.23954113946161, 40.07172270765838]
+    // });
+
+    map = new mapboxgl.Map({
+        container: 'map',
+        style: './style/osmstyle.json',
+        center: [116.23954113946161, 40.07172270765838],
+        zoom: 15,
+        pitch: 0
+      });
     map.addControl(new mapboxgl.NavigationControl(), "top-right");  //放大缩小按钮
     map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -87,32 +87,31 @@ function lnglatback(){
     });
     return(cor);
 }
+//定义起点点击函数
+function startonclick(e){
+    var nowcor = e.lngLat;
+    $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    console.log(nowcor);
+    return(nowcor);
+}
+//定义终点点击函数
+function endonclick(e){
+    var nowcor = e.lngLat;
+    $("#endpoint").val(nowcor.lat+','+nowcor.lng);
+    console.log(nowcor);
+    return(nowcor);
+}
 //获取起点坐标
 function getstartpoint(){
     console.log('获取起点坐标！');
-    // var nowcor = '';
-    map.on('click', function (e) {
-        var nowcor = e.lngLat;
-        $("#startpoint").val(nowcor.lat+','+nowcor.lng);
-    });
-    // var nowcor = lnglatback();
-    // console.log(nowcor);
-    // $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    map.off('click', endonclick);
+    map.on('click', startonclick);
 }
 //获取终点坐标
 function getendpoint(){
-    map.off('click', function (e) {
-        var nowcor = e.lngLat;
-        $("#startpoint").val(nowcor.lat+','+nowcor.lng);
-    });
     console.log('获取终点坐标！');
-    // var nowcor = '';
-    map.on('click', function (e) {
-        var nowcor = e.lngLat;
-        $("#endpoint").val(nowcor.lat+','+nowcor.lng);
-    });
-    // var nowcor = lnglatback();
-    // $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    map.off('click', startonclick);
+    map.on('click', endonclick);
 }
 
 //路径规划
