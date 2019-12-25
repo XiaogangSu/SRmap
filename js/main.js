@@ -1,19 +1,26 @@
-// mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw';
+mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw';
 function loadmap(){
-    // var map = new mapboxgl.Map({
-    //     container: 'map',
-    //     style:'./css/paintline2_Basic2/style_main.json',
-    //     zoom: 15,
-    //     center: [116.23954113946161, 40.07172270765838]
-    // });
-
     map = new mapboxgl.Map({
         container: 'map',
-        style: './style/osmstyle.json',
-        center: [116.23954113946161, 40.07172270765838],
+        style:'./style/mapbox/style.json',
         zoom: 15,
-        pitch: 0
-      });
+        center: [116.23954113946161, 40.07172270765838]
+    });
+
+    // map = new mapboxgl.Map({
+    //     container: 'map',
+    //     style: './style/osmstyle.json',
+    //     center: [116.23954113946161, 40.07172270765838],
+    //     zoom: 15,
+    //     pitch: 0
+    //   });
+    map.addControl(new mapboxgl.NavigationControl(), "top-right");  //放大缩小按钮
+    map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
+    }));  //定位按钮
 }
 loadmap();
 
@@ -94,7 +101,10 @@ function getstartpoint(){
 }
 //获取终点坐标
 function getendpoint(){
-    map.off('click', function (e) {});
+    map.off('click', function (e) {
+        var nowcor = e.lngLat;
+        $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    });
     console.log('获取终点坐标！');
     // var nowcor = '';
     map.on('click', function (e) {
