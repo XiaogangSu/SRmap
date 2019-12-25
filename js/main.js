@@ -84,24 +84,25 @@ function lnglatback(){
 function getstartpoint(){
     console.log('获取起点坐标！');
     // var nowcor = '';
-    // map.on('click', function (e) {
-    //     var nowcor = e.lngLat;
-    //     $("#startpoint").val(nowcor.lat+','+nowcor.lng);
-    // });
-    var nowcor = lnglatback();
-    console.log(nowcor);
-    $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    map.on('click', function (e) {
+        var nowcor = e.lngLat;
+        $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    });
+    // var nowcor = lnglatback();
+    // console.log(nowcor);
+    // $("#startpoint").val(nowcor.lat+','+nowcor.lng);
 }
 //获取终点坐标
 function getendpoint(){
+    map.off('click', function (e) {});
     console.log('获取终点坐标！');
     // var nowcor = '';
-    // map.on('click', function (e) {
-    //     var nowcor = e.lngLat;
-    //     $("#endpoint").val(nowcor.lat+','+nowcor.lng);
-    // });
-    var nowcor = lnglatback();
-    $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    map.on('click', function (e) {
+        var nowcor = e.lngLat;
+        $("#endpoint").val(nowcor.lat+','+nowcor.lng);
+    });
+    // var nowcor = lnglatback();
+    // $("#startpoint").val(nowcor.lat+','+nowcor.lng);
 }
 
 //路径规划
