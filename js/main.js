@@ -1,19 +1,19 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw';
 function loadmap(){
-    // map = new mapboxgl.Map({
-    //     container: 'map',
-    //     style:'./style/mapbox/style.json',
-    //     zoom: 15,
-    //     center: [116.23954113946161, 40.07172270765838]
-    // });
-
     map = new mapboxgl.Map({
         container: 'map',
-        style: './style/osmstyle.json',
-        center: [116.23954113946161, 40.07172270765838],
+        style:'./style/mapbox/style.json',
         zoom: 15,
-        pitch: 0
-      });
+        center: [116.23954113946161, 40.07172270765838]
+    });
+
+    // map = new mapboxgl.Map({
+    //     container: 'map',
+    //     style: './style/osmstyle.json',
+    //     center: [116.23954113946161, 40.07172270765838],
+    //     zoom: 15,
+    //     pitch: 0
+    //   });
     map.addControl(new mapboxgl.NavigationControl(), "top-right");  //放大缩小按钮
     map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -62,6 +62,7 @@ function getlayer(){
     }
     return(layerid);
 }
+
 //获取当前时间
 function getnowtime(){
     var odate=new Date();
@@ -76,29 +77,102 @@ function getnowtime(){
     return(nowtime)
 }
 
-var start = 0;
-var end = 0;
-function lnglatback(){
-    var cor='';
-    map.on('click', function (e) {
-        console.log('获取点击位置坐标！');
-        cor = e.lngLat;
-        console.log(cor);
-    });
-    return(cor);
-}
 //定义起点点击函数
 function startonclick(e){
     var nowcor = e.lngLat;
     $("#startpoint").val(nowcor.lat+','+nowcor.lng);
-    console.log(nowcor);
+    var layerids = getlayer();
+    // console.log(layerids);
+    //检查起始点图层是否存在，若存在则删除
+    for (var i=0; i<layerids.length; i++){
+        if(layerids[i].search('startpoint') != -1){
+            map.removeLayer(layerids[i]);
+            map.removeSource(layerids[i]);
+        }  
+    }
+    var startjson = {
+        'type': 'FeatureCollection',
+        'features':[{
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [nowcor.lng, nowcor.lat]
+            },
+            'properties': {
+                'title': 'start',
+                'description': '起始点',
+                'icon': 'monument'
+            }
+        }]
+    }
+    map.addSource('startpoint',{
+        'type': "geojson",
+        'data': startjson
+    });
+    map.addLayer({
+        'id': "startpoint",
+        'type': 'symbol',
+        'source': 'startpoint',
+        'layout': {
+            'icon-image': ['concat', ['get', 'icon'], '-15'],
+            'text-field': ['get', 'title'],
+            'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top'
+        }
+    })
+    // map.removeLayer("startmarker")
+    // var startmarker = new mapboxgl.Marker({
+    //     draggable: true
+    //   })
+    //     .setLngLat([nowcor.lng, nowcor.lat])
+    //     .addTo(map);
     return(nowcor);
 }
 //定义终点点击函数
 function endonclick(e){
     var nowcor = e.lngLat;
     $("#endpoint").val(nowcor.lat+','+nowcor.lng);
-    console.log(nowcor);
+    var layerids = getlayer();
+    // console.log(layerids);
+    //检查起始点图层是否存在，若存在则删除
+    for (var i=0; i<layerids.length; i++){
+        if(layerids[i].search('endpoint') != -1){
+            map.removeLayer(layerids[i]);
+            map.removeSource(layerids[i]);
+        }  
+    }
+    var endjson = {
+        'type': 'FeatureCollection',
+        'features':[{
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [nowcor.lng, nowcor.lat]
+            },
+            'properties': {
+                'title': 'end',
+                'description': '终点',
+                'icon': 'harbor'
+            }
+        }]
+    }
+    map.addSource('endpoint',{
+        'type': "geojson",
+        'data': endjson
+    });
+    map.addLayer({
+        'id': "endpoint",
+        'type': 'symbol',
+        'source': 'endpoint',
+        'layout': {
+            'icon-image': ['concat', ['get', 'icon'], '-15'],
+            'text-field': ['get', 'title'],
+            'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top'
+        }
+    })
     return(nowcor);
 }
 //获取起点坐标
@@ -121,25 +195,21 @@ function routenav(){
     var startcor = $("#startpoint").val();
     var endcor = $("#endpoint").val();
     var url = url1+startcor+"&point="+endcor+url2;
-    // var url = "http://121.199.14.136:8989/route?point=40.07150362225707,116.239492893219&point=40.10392189975916,116.30669832229616&type=json&locale=zh-CN&vehicle=car&weighting=fastest&points_encoded=false";
     var urlbackcor = urlback(url);
-    // console.log(urlbackcor);
-    // 判断是否存在某一图层，若存在则删除
-    var layerids = getlayer();
-    console.log(layerids);
-    if (layerids.length>1){
-        for (var i=1; i<layerids.length; i++){
-            map.removeLayer(layerids[i]);
-            map.removeSource(layerids[i]);
-        }
-    }
-    // if (layerids.indexOf("route")>1){
-    //     map.removeLayer('route');
-    //     map.removeSource('route');
-    // }
     var userid='sxg_';
     var nowtime = getnowtime();
     var sub = 'route';
+    // console.log(urlbackcor);
+    // 判断是否存在某一图层，若存在则删除
+    var layerids = getlayer();
+    // console.log(layerids);
+    for (var i=0; i<layerids.length; i++){
+        if(layerids[i].search(userid+sub) != -1){
+            map.removeLayer(layerids[i]);
+            map.removeSource(layerids[i]);
+        }  
+    }
+    
     var routelayerid = userid+sub+nowtime
     map.addLayer({
         'id': routelayerid,
