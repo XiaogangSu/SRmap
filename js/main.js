@@ -190,6 +190,8 @@ function getendpoint(){
 
 //路径规划
 function routenav(){
+    map.off('click', startonclick);
+    map.off('click', endonclick);
     var url1 = "http://121.199.14.136:8989/route?point="
     var url2 = "&type=json&locale=zh-CN&vehicle=car&weighting=fastest&points_encoded=false";
     var startcor = $("#startpoint").val();
