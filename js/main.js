@@ -188,6 +188,55 @@ function getendpoint(){
     map.on('click', endonclick);
 }
 
+//定位当前位置
+function getposition(){
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var lon = position.coords.longitude;
+        var lat = position.coords.latitude
+        console.log("当前经度："+lon);
+        console.log("当前纬度："+lat);
+        map.flyTo({
+            center:[lon, lat],
+            zoom: 15
+        });
+        var posjson = {
+            'type': 'FeatureCollection',
+            'features':[{
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [lon, lat]
+                }
+            }]
+        }
+
+        map.addSource('pospoint',{
+            'type': "geojson",
+            'data': posjson
+        });
+        map.loadImage('./icon/begin.png', function(error, image) {
+            if (error) throw error;
+            if (!map.hasImage('posicon')) map.addImage('posicon', image);
+        });
+        // map.addImage('posiconid', posicon);
+        map.addLayer({
+            'id': "poslayer",
+            'type': 'symbol',
+            'source': 'pospoint',
+            'layout': {
+                'icon-image': 'posicon'
+            }
+        })
+
+    }, function (error) {
+        alert(error.code);
+    },{
+        enableHighAcuracy : true,
+        timeout :10000,
+        maximumAge : 10000
+    });
+}
+
 //路径规划
 function routenav(){
     map.off('click', startonclick);
@@ -237,3 +286,5 @@ function routenav(){
         }
     });
 }
+
+

@@ -81,3 +81,12 @@ body {
     text-align: center;
     line-height: 32px;
 }
+
+#position{
+    width: 80px;
+    height: 32px;
+    background: black;
+    color: white;
+    text-align: center;
+    line-height: 32px;
+}
