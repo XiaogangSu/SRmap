@@ -188,9 +188,72 @@ function getendpoint(){
     map.on('click', endonclick);
 }
 
+//获取当前位置..clear
+function localpos(){
+    var geolocation = new BMap.Geolocation(); 
+    var lng = '';
+    var lon = '';
+    geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            alert('您的位置：'+r.point.lng+','+r.point.lat);
+            lng = r.point.lng;
+            lon = r.point.lat
+        }
+        else {
+            alert('failed'+this.getStatus());
+        }
+    });
+    return([lon, lng]);
+}
 //定位当前位置
 function getposition(){
-    navigator.geolocation.getCurrentPosition(function (position) {
+    //使用百度api定位
+    var geolocation = new BMap.Geolocation(); 
+    geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            console.log('您的位置：'+r.point.lng+','+r.point.lat);
+            var lon = r.point.lng;
+            var lat = r.point.lat
+            console.log("当前经度："+lon);
+            console.log("当前纬度："+lat);
+            map.flyTo({
+                center:[lon, lat],
+                zoom: 15
+            });
+            var posjson = {
+                'type': 'FeatureCollection',
+                'features':[{
+                    'type': 'Feature',
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [lon, lat]
+                    }
+                }]
+            }
+    
+            map.addSource('pospoint',{
+                'type': "geojson",
+                'data': posjson
+            });
+            map.loadImage('./icon/begin.png', function(error, image) {
+                if (error) throw error;
+                if (!map.hasImage('posicon')) map.addImage('posicon', image);
+            });
+            // map.addImage('posiconid', posicon);
+            map.addLayer({
+                'id': "poslayer",
+                'type': 'symbol',
+                'source': 'pospoint',
+                'layout': {
+                    'icon-image': 'posicon'
+                }
+            })
+        }
+        else {
+            alert('failed'+this.getStatus());
+        }
+    });
+    /*navigator.geolocation.getCurrentPosition(function (position) {
         var lon = position.coords.longitude;
         var lat = position.coords.latitude
         console.log("当前经度："+lon);
@@ -235,7 +298,7 @@ function getposition(){
         enableHighAcuracy : false,
         timeout :20000,
         maximumAge : 20000
-    });
+    });*/
 }
 
 //路径规划
