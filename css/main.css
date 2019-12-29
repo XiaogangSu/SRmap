@@ -7,7 +7,7 @@ body {
     width: 100%;
 }
 #searchbox{
-    /* width: 600px; */
+    width: 100%;
     position: absolute;
     left: 20px;
     top: 20px;
@@ -15,18 +15,19 @@ body {
     font-size: 14px;
 }
 #searchtext{
-    width: 300px;
+    width: 50%;
     border: 1px solid #e7e4e4;
     height: 32px;
+    float: left;
     background-repeat: no-repeat;
     background-size: 25px;
     background-position:5px center;
     padding:0 0 0 20px;
 }
 #search{
-    width: 80px;
+    width: 60px;
     height: 32px;
-    /* float: left; */
+    float: left;
     background: black;
     text-align: center;
     color: white;
@@ -48,13 +49,13 @@ body {
     line-height: 32px;
 }
 #startpoint{
-    width: 300px;
+    width: 200px;
     border: 1px solid #e7e4e4;
     height: 32px;
     background-repeat: no-repeat;
     background-size: 25px;
     background-position:5px center;
-    padding:0 0 0 20px;
+    /* padding:0 0 0 20px; */
 }
 #endbtn{
     width: 80px;
@@ -65,13 +66,13 @@ body {
     line-height: 32px;
 }
 #endpoint{
-    width: 300px;
+    width: 200px;
     border: 1px solid #e7e4e4;
     height: 32px;
     background-repeat: no-repeat;
     background-size: 25px;
     background-position:5px center;
-    padding:0 0 0 20px;
+    /* padding:0 0 0 20px; */
 }
 #routenav{
     width: 80px;

@@ -15,12 +15,12 @@ function loadmap(){
     //     pitch: 0
     //   });
     map.addControl(new mapboxgl.NavigationControl(), "top-right");  //放大缩小按钮
-    map.addControl(new mapboxgl.GeolocateControl({
-        positionOptions: {
-            enableHighAccuracy: true
-        },
-        trackUserLocation: true
-    }));  //定位按钮
+    // map.addControl(new mapboxgl.GeolocateControl({
+    //     positionOptions: {
+    //         enableHighAccuracy: true
+    //     },
+    //     trackUserLocation: true
+    // }));  //定位按钮
 }
 loadmap();
 
@@ -141,7 +141,7 @@ function gcj02towgs84(lng, lat) {
 //定义起点点击函数
 function startonclick(e){
     var nowcor = e.lngLat;
-    $("#startpoint").val(nowcor.lat+','+nowcor.lng);
+    $("#startpoint").val(nowcor.lat.toFixed(7)+','+nowcor.lng.toFixed(7));
     var layerids = getlayer();
     // console.log(layerids);
     //检查起始点图层是否存在，若存在则删除
@@ -193,7 +193,7 @@ function startonclick(e){
 //定义终点点击函数
 function endonclick(e){
     var nowcor = e.lngLat;
-    $("#endpoint").val(nowcor.lat+','+nowcor.lng);
+    $("#endpoint").val(nowcor.lat.toFixed(7)+','+nowcor.lng.toFixed(7));
     var layerids = getlayer();
     // console.log(layerids);
     //检查起始点图层是否存在，若存在则删除
