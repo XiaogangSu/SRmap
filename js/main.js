@@ -1,19 +1,19 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw';
 function loadmap(){
-    map = new mapboxgl.Map({
-        container: 'map',
-        style:'./style/mapbox/style.json',
-        zoom: 15,
-        center: [116.23954113946161, 40.07172270765838]
-    });
-
     // map = new mapboxgl.Map({
     //     container: 'map',
-    //     style: './style/osmstyle.json',
-    //     center: [116.23954113946161, 40.07172270765838],
+    //     style:'./style/mapbox/style.json',
     //     zoom: 15,
-    //     pitch: 0
-    //   });
+    //     center: [116.23954113946161, 40.07172270765838]
+    // });
+
+    map = new mapboxgl.Map({
+        container: 'map',
+        style: './style/osmstyle.json',
+        center: [116.23954113946161, 40.07172270765838],
+        zoom: 15,
+        pitch: 0
+      });
     map.addControl(new mapboxgl.NavigationControl(), "top-right");  //放大缩小按钮
     map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -229,11 +229,12 @@ function getposition(){
         })
 
     }, function (error) {
-        alert(error.code);
+        // alert(error.code);
+        alert(error.message);
     },{
-        enableHighAcuracy : true,
-        timeout :10000,
-        maximumAge : 10000
+        enableHighAcuracy : false,
+        timeout :20000,
+        maximumAge : 20000
     });
 }
 
