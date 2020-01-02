@@ -467,6 +467,25 @@
             }
         },
         {
+            "id": "SRmap landuse",
+            "type": "fill",
+            "source": "SRmap",
+            "source-layer": "landuse",
+            "layout": {},
+            "paint": {
+                "fill-color": "#458B00",
+                "fill-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    13.5,
+                    0,
+                    14,
+                    1
+                ]
+            }
+        },
+        {
             "id": "SRmap highway",
             "type": "line",
             "source": "SRmap",
@@ -482,22 +501,25 @@
             }
         },
         {
-            "id": "SRmap building",
-            "type": "fill",
+            "id": "poi_SRmap",
+            "type": "symbol",
             "source": "SRmap",
-            "source-layer": "building",
-            "layout": {},
+            "source-layer": "poi",
+            "minzoom": 5,
+            "layout": {
+                "icon-image": "{maki}-11",
+                "text-offset": [0, 0.5],
+                "text-field": "{name_en}",
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-max-width": 8,
+                "text-anchor": "top",
+                "text-size": 11
+            },
             "paint": {
-                "fill-color": "#E31A1C",
-                "fill-opacity": [
-                    "interpolate",
-                    ["linear"],
-                    ["zoom"],
-                    13.5,
-                    0,
-                    14,
-                    1
-                ]
+                "text-color": "#666",
+                "text-halo-width": 1,
+                "text-halo-color": "rgba(255,0,255,0.75)",
+                "text-halo-blur": 1
             }
         }
     ],

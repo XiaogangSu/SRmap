@@ -294,14 +294,14 @@ function getposition_b(){
     geolocation.enableSDKLocation();
     geolocation.getCurrentPosition(function(r){
         if(this.getStatus() == BMAP_STATUS_SUCCESS){
-            console.log('您的位置：'+r.point.lng+','+r.point.lat);
+            console.log('百度定位坐标：'+r.point.lng+','+r.point.lat);
             var lon_gc02 = r.point.lng;
             var lat_gc02 = r.point.lat
             var wgs84_cor = gcj02towgs84(lon_gc02, lat_gc02);
             var lon = wgs84_cor[0];
             var lat = wgs84_cor[1];
             console.log(typeof(wgs84_cor));
-            console.log('wgs84坐标：'+wgs84_cor)
+            // console.log('wgs84坐标：'+wgs84_cor)
             console.log("当前经度："+lon);
             console.log("当前纬度："+lat);
             map.flyTo({
