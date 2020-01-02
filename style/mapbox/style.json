@@ -24,7 +24,7 @@
         "SRmap": {
             "type": "vector",
             "scheme": "xyz",
-            "tiles": ["http://121.199.14.136:5000/mvt/test/{z}/{x}/{y}.mvt"]
+            "tiles": ["http://127.0.0.1:5000/mvt/test/{z}/{x}/{y}.mvt"]
         }
     },
     "sprite": "mapbox://sprites/xgar/cj9wxdbj6675b2sqnctx1bw6i/1d4iihhnz6z76gu2dqkw75ci9",

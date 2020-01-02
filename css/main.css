@@ -1,6 +1,7 @@
 body {
     margin: 0; 
     padding: 0; 
+    text-align: center;
 }
 #map {
     height: 100%;
@@ -114,4 +115,16 @@ body {
     color: white;
     text-align: center;
     line-height: 32px;
+}
+#zoom-level{
+    position: absolute;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    z-index: 999;
+    background:#EED2EE;
+    left: 0px;
+    bottom: 0px;
+    font-family: 'Microsoft YaHei';
+    line-height: 30px;
 }

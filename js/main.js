@@ -3,7 +3,7 @@ function loadmap(){
     map = new mapboxgl.Map({
         container: 'map',
         style:'./style/mapbox/style.json',
-        zoom: 15,
+        zoom: 12,
         center: [116.23954113946161, 40.07172270765838]
     });
 
@@ -23,6 +23,11 @@ function loadmap(){
     // }));  //定位按钮
 }
 loadmap();
+
+map.on('zoomend', function(){
+    zoomlevel = map.getZoom().toFixed(1);
+    document.getElementById('zoom-level').innerHTML = 'Zoom Level: ' + zoomlevel;
+});
 
 //获取url返回结果
 function urlback(urlroute){
