@@ -501,15 +501,14 @@
             }
         },
         {
-            "id": "poi_SRmap",
+            "id": "poiname_SRmap",
             "type": "symbol",
             "source": "SRmap",
             "source-layer": "poi",
-            "minzoom": 5,
             "layout": {
+                "text-field": "{name}",
                 "icon-image": "{maki}-11",
                 "text-offset": [0, 0.5],
-                "text-field": "{name_en}",
                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                 "text-max-width": 8,
                 "text-anchor": "top",
@@ -521,6 +520,12 @@
                 "text-halo-color": "rgba(255,0,255,0.75)",
                 "text-halo-blur": 1
             }
+        },
+        {
+            "id": "poi_SRmap",
+            "type": "symbol",
+            "source": "SRmap",
+            "source-layer": "poi"
         }
     ],
     "created": "2017-11-12T15:38:45.427Z",
