@@ -1,0 +1,166 @@
+{
+    "version": 8,
+    "name": "paintline2_Basic",
+    "metadata": {
+        "mapbox:autocomposite": true,
+        "mapbox:type": "template",
+        "mapbox:trackposition": false,
+        "mapbox:sdk-support": {
+            "js": "0.40.0",
+            "android": "5.2.0",
+            "ios": "3.7.0"
+        },
+        "mapbox:groups": {}
+    },
+    "center": [116.39793833143221, 39.91630363766245],
+    "zoom": 14.22273296576556,
+    "bearing": 0,
+    "pitch": 0,
+    "sources": {
+        "SRmap": {
+            "type": "vector",
+            "scheme": "xyz",
+            "tiles": ["http://127.0.0.1:5000/mvt/test/{z}/{x}/{y}.mvt"]
+        }
+    },
+    "sprite": "mapbox://sprites/xgar/cj9wxdbj6675b2sqnctx1bw6i/1d4iihhnz6z76gu2dqkw75ci9",
+    "glyphs": "mapbox://fonts/xgar/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "paint": {"background-color": "#dedede"}
+        },
+        {
+            "id": "landuse_overlay_national_park",
+            "type": "fill",
+            "source": "SRmap",
+            "source-layer": "landuse",
+            "filter": ["==", "landuse", "commercial"],
+            "paint": {"fill-color": "#d2edae", "fill-opacity": 0.75}
+        },
+        {
+            "id": "landuse_park",
+            "type": "fill",
+            "source": "SRmap",
+            "source-layer": "landuse",
+            "filter": ["==", "landuse", "park"],
+            "paint": {"fill-color": "#b0eec9"}
+        },
+        {
+            "id": "SRmap landuse",
+            "type": "fill",
+            "source": "SRmap",
+            "source-layer": "landuse",
+            "layout": {},
+            "paint": {
+                "fill-color": "#458B00",
+                "fill-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    13.5,
+                    0,
+                    14,
+                    1
+                ]
+            }
+        },
+        {
+            "id": "building",
+            "type": "fill",
+            "source": "SRmap",
+            "source-layer": "building",
+            "paint": {"fill-color": "#d6d6d6"}
+        },
+        {
+            "id": "road_major",
+            "type": "line",
+            "source": "SRmap",
+            "source-layer": "highway",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "in",
+                    "highway",
+                    "motorway",
+                    "primary",
+                    "secondary",
+                    "tertiary",
+                    "trunk"
+                ]
+            ],
+            "layout": {"line-cap": "round", "line-join": "round"},
+            "paint": {
+                "line-color": "#fff",
+                "line-width": {"base": 1.4, "stops": [[6, 0.5], [20, 30]]}
+            }
+        },
+        {
+            "id": "road_major_label",
+            "type": "symbol",
+            "source": "SRmap",
+            "source-layer": "highway",
+            "filter": [
+                "all",
+                ["==", "$type", "LineString"],
+                [
+                    "in",
+                    "highway",
+                    "motorway",
+                    "primary",
+                    "secondary",
+                    "tertiary",
+                    "trunk"
+                ]
+            ],
+            "layout": {
+                "symbol-placement": "line",
+                "text-field": "{name}",
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-transform": "uppercase",
+                "text-letter-spacing": 0.1,
+                "text-size": {"base": 1.4, "stops": [[10, 8], [20, 14]]}
+            },
+            "paint": {
+                "text-color": "#666",
+                "text-halo-color": "rgba(255,255,255,0.75)",
+                "text-halo-width": 2
+            }
+        },
+        {
+            "id": "poiname_SRmap",
+            "type": "symbol",
+            "source": "SRmap",
+            "source-layer": "poi",
+            "layout": {
+                "text-field": "{name}",
+                "icon-image": "{maki}-11",
+                "text-offset": [0, 0.5],
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-max-width": 8,
+                "text-anchor": "top",
+                "text-size": 11
+            },
+            "paint": {
+                "text-color": "#666",
+                "text-halo-width": 1,
+                "text-halo-color": "rgba(255,0,255,0.75)",
+                "text-halo-blur": 1
+            }
+        },
+        {
+            "id": "poi_SRmap",
+            "type": "symbol",
+            "source": "SRmap",
+            "source-layer": "poi"
+        }
+    ],
+    "created": "2017-11-12T15:38:45.427Z",
+    "id": "cj9wxdbj6675b2sqnctx1bw6i",
+    "modified": "2019-12-05T09:57:50.351Z",
+    "owner": "xgar",
+    "visibility": "private",
+    "draft": false
+}
