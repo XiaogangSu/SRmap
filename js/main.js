@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua
 function loadmap(){
     map = new mapboxgl.Map({
         container: 'map',
-        style:'./style/mapbox/style_SRmap.json',
+        style:'./style/mapbox/style.json',
         zoom: 12,
         center: [116.23954113946161, 40.07172270765838]
     });
@@ -144,6 +144,14 @@ function gcj02towgs84(lng, lat) {
 }
 
 //定义起点点击函数
+map.loadImage('./icon/begin.png', function(error, image) {
+    if (error) throw error;
+    if (!map.hasImage('startimg')) map.addImage('startimg', image);
+});
+map.loadImage('./icon/end.png', function(error, image) {
+    if (error) throw error;
+    if (!map.hasImage('endimg')) map.addImage('endimg', image);
+});
 function startonclick(e){
     var nowcor = e.lngLat;
     $("#startpoint").val(nowcor.lat.toFixed(7)+','+nowcor.lng.toFixed(7));
@@ -186,10 +194,7 @@ function startonclick(e){
     //         'text-anchor': 'top'
     //     }
     // })
-    map.loadImage('./icon/begin.png', function(error, image) {
-        if (error) throw error;
-        if (!map.hasImage('startimg')) map.addImage('startimg', image);
-    });
+    
     // map.addImage('posiconid', posicon);
     map.addLayer({
         'id': "startpoint",
@@ -244,10 +249,7 @@ function endonclick(e){
     //         'text-anchor': 'top'
     //     }
     // })
-    map.loadImage('./icon/end.png', function(error, image) {
-        if (error) throw error;
-        if (!map.hasImage('endimg')) map.addImage('endimg', image);
-    });
+    
     // map.addImage('posiconid', posicon);
     map.addLayer({
         'id': "endpoint",

@@ -23,7 +23,7 @@
             "tiles": ["http://127.0.0.1:5000/mvt/test/{z}/{x}/{y}.mvt"]
         }
     },
-    "sprite": "mapbox://sprites/xgar/cj9wxdbj6675b2sqnctx1bw6i/1d4iihhnz6z76gu2dqkw75ci9",
+    "sprite": "http://localhost:8080/SRmap/icon/sprite/sprite",
     "glyphs": "mapbox://fonts/xgar/{fontstack}/{range}.pbf",
     "layers": [
         {
@@ -136,7 +136,7 @@
             "source-layer": "poi",
             "layout": {
                 "text-field": "{name}",
-                "icon-image": "{maki}-11",
+                "icon-image": "marker-15",
                 "text-offset": [0, 0.5],
                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                 "text-max-width": 8,
@@ -144,17 +144,11 @@
                 "text-size": 11
             },
             "paint": {
-                "text-color": "#666",
-                "text-halo-width": 1,
-                "text-halo-color": "rgba(255,0,255,0.75)",
+                "text-color": "#FF00FF",
+                "text-halo-width": 0,
+                "text-halo-color": "rgba(255,0,255,0.8)",
                 "text-halo-blur": 1
             }
-        },
-        {
-            "id": "poi_SRmap",
-            "type": "symbol",
-            "source": "SRmap",
-            "source-layer": "poi"
         }
     ],
     "created": "2017-11-12T15:38:45.427Z",

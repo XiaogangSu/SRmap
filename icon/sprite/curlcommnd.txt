@@ -1,0 +1,3 @@
+curl "https://api.mapbox.com/styles/v1/xgar/cj9wxdbj6675b2sqnctx1bw6i/sprite.png?access_token=pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw" --output ./sprite.png
+
+curl "https://api.mapbox.com/styles/v1/xgar/cj9wxdbj6675b2sqnctx1bw6i/sprite@3x?access_token=pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw" --output ./sprite.png
