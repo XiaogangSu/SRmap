@@ -74,6 +74,32 @@
             "paint": {"fill-color": "#d6d6d6"}
         },
         {
+            "id": "3D-buildings",
+            "source": "SRmap",
+            "source-layer": "building",
+            "type": "fill-extrusion",
+            "minzoom": 14,
+            "fill-extrusion-height": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                15,
+                0,
+                15.05,
+                ["get", "height"]
+            ],
+            "fill-extrusion-base": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                15,
+                0,
+                15.05,
+                ["get", "height"]
+            ],
+            "fill-extrusion-opacity": 0.6
+        },
+        {
             "id": "road_major",
             "type": "line",
             "source": "SRmap",
@@ -134,6 +160,7 @@
             "type": "symbol",
             "source": "SRmap",
             "source-layer": "poi",
+            "minzoom": 13.5,
             "layout": {
                 "text-field": "{name}",
                 "icon-image": "marker-15",

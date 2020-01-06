@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua
 function loadmap(){
     map = new mapboxgl.Map({
         container: 'map',
-        style:'./style/mapbox/style.json',
+        style:'./style/mapbox/style_SRmap.json',
         zoom: 12,
         center: [116.23954113946161, 40.07172270765838]
     });
@@ -150,7 +150,7 @@ map.loadImage('./icon/begin.png', function(error, image) {
 });
 map.loadImage('./icon/end.png', function(error, image) {
     if (error) throw error;
-    if (!map.hasImage('endimg')) map.addImage('endimg', image);
+    if (!map.hasImage('endimg')) map.addImage('endimg',image);
 });
 function startonclick(e){
     var nowcor = e.lngLat;
