@@ -60,9 +60,9 @@
                     ["linear"],
                     ["zoom"],
                     13.5,
-                    0,
+                    0.3,
                     14,
-                    1
+                    0.8
                 ]
             }
         },
@@ -80,10 +80,16 @@
             "type": "fill-extrusion",
             "minzoom": 12,
             "paint": {
-                "fill-extrusion-color": "#0f3662",
-                "fill-extrusion-height":["to-number",["get", "height"]],
-                "fill-extrusion-base": 0,
-                "fill-extrusion-opacity":0.75
+                "fill-extrusion-color": "#aaa",
+                "fill-extrusion-height": [
+                    "case", 
+                    ["has", "building:levels"],
+                    ["*",3,["to-number",["get", "building:levels"]]],
+                    ["to-number",["get", "height"]]
+
+                ],
+                "fill-extrusion-base":0,
+                "fill-extrusion-opacity":0.6
             }
         },
         {
