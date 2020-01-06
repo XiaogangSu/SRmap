@@ -83,13 +83,14 @@
                 "fill-extrusion-color": "#aaa",
                 "fill-extrusion-height": [
                     "case", 
+                    ["has", "height"],
+                    ["to-number",["get", "height"]],
                     ["has", "building:levels"],
                     ["*",3,["to-number",["get", "building:levels"]]],
-                    ["to-number",["get", "height"]]
-
+                    0
                 ],
                 "fill-extrusion-base":0,
-                "fill-extrusion-opacity":0.6
+                "fill-extrusion-opacity":0.7
             }
         },
         {
