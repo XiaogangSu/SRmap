@@ -20,7 +20,7 @@
         "SRmap": {
             "type": "vector",
             "scheme": "xyz",
-            "tiles": ["http://127.0.0.1:5000/mvt/test/{z}/{x}/{y}.mvt"]
+            "tiles": ["http://121.199.14.136:5000/mvt/test/{z}/{x}/{y}.mvt"]
         }
     },
     "sprite": "http://localhost:8080/SRmap/icon/sprite/sprite",
