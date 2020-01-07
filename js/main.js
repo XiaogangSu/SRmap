@@ -496,7 +496,7 @@ function routenav(){
             'line-cap': 'round'
         },
         'paint': {
-            'line-color': '#0000FF',
+            'line-color': 'rgba(0, 0, 128, 0.3)',
             'line-width': 5
         }
     });
