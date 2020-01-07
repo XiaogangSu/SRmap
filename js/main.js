@@ -2,9 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua
 function loadmap(){
     map = new mapboxgl.Map({
         container: 'map',
-        style:'./style/mapbox/style_SRmap.json',
-        zoom: 12,
-        center: [116.23954113946161, 40.07172270765838]
+        style:'./style/mapbox/style_SRmap.json'
     });
 
     // map = new mapboxgl.Map({
