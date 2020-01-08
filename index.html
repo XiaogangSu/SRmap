@@ -11,15 +11,22 @@
 
 <body>
     <div id='map'></div>
-    <div id="searchbox">
+    <table id="searchbox">
+        <tr>
+            <th><input id="searchtext" type="text" name="search" placeholder="Input key value"></th>
+            <th><button id="search" type="button">Search</button></th>
+        </tr>
+    </table>
+    
+    <!-- <div id="searchbox">
         <input id="searchtext" type="text" name="search" placeholder="Input key value">
         <button id="search" type="button">Search</button>
-    </div>
+    </div> -->
     
     <!-- 路径导航 -->
     <table id="route">
         <tr>
-            <th><button id="startbtn" type="button" onclick=getstartpoint()>Start Point</button></th>
+            <th><button id="startbtn" type="button" onclick=getstartpoint()>Source</button></th>
             <th align="left"><input id="startpoint" type="text"></th>
         </tr>
         <tr>
@@ -28,16 +35,20 @@
         </tr>
         <tr>
             <td><button id="routenav" type="button" onclick=routenav()>Path Plan</button></td>
-            <td>
-                <button id="position_j" type="button" onclick=getposition_j()>Pos_j</button>
-                <button id="position_b" type="button" onclick=getposition_b()>Pos_b</button>
-                <button id="position_t" type="button" onclick=getposition_t()>Pos_t</button>
-            </td>
-        </tr>
-        <tr>
-            <td><button id="trackpoint" type="button" onclick=gettrack()>Track</button></td>
         </tr>
     </table>
+    <table id="pos" border="0px">
+        <tr>
+            <th><button id="position_b" type="button" onclick=getposition_b()>B</button></th>
+        </tr>
+        <tr>
+            <th><button id="position_j" type="button" onclick=getposition_j()>J</button></th>
+        </tr>
+    </table>
+    <!-- <button id="position_j" type="button" onclick=getposition_j()>J</button>
+    <button id="position_b1" type="button" onclick=getposition_b()><img id="position_b" src='./icon/pos.png' width=25,height=25/></button> -->
+    <!-- <button id="position_b" type="button" onclick=getposition_b()><img src='./icon/pos.png' width=25,height=25/></button> -->
+    <!-- <button id="position_t" type="button" onclick=getposition_t()>T</button> -->
     <div id='zoom-level'>Z Level: 12</div>
     <script src="./js/main.js"></script>
 

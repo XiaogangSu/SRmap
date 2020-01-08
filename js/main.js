@@ -1,4 +1,42 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw';
+//判断设备类型
+function IsPC() {
+    // var width=window.screen.width;
+    // alert("当前设备宽为："+width)
+    var userAgentInfo = navigator.userAgent;
+    console.log("Agent:"+userAgentInfo);
+    var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
+device_type = IsPC();
+//根据设备类型动态设置页面布局
+function setUI(){
+    console.log("devicetype:"+device_type)
+    if (device_type==false){
+        // alert("移动设备！")
+        var searchtext = document.getElementById("searchtext");
+        var searchbox = document.getElementById("searchbox");
+        var search = document.getElementById("search");
+        searchbox.style.setProperty("left", "5px");
+        searchbox.style.setProperty("top", "5px");
+        // searchtext.style.setProperty("width", "85%");
+        // search.style.setProperty("width", "15%");
+        var route = document.getElementById("route");
+        route.style.setProperty("left", "5px");
+        route.style.setProperty("top", "40px");
+    }
+}
+setUI();
+
 function loadmap(){
     map = new mapboxgl.Map({
         container: 'map',
@@ -12,7 +50,7 @@ function loadmap(){
     //     zoom: 15,
     //     pitch: 0
     //   });
-    map.addControl(new mapboxgl.NavigationControl(), "top-right");  //放大缩小按钮
+    map.addControl(new mapboxgl.NavigationControl(), "bottom-right");  //放大缩小按钮
     // map.addControl(new mapboxgl.GeolocateControl({
     //     positionOptions: {
     //         enableHighAccuracy: true

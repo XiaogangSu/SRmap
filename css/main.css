@@ -8,7 +8,7 @@ body {
     width: 100%;
 }
 #searchbox{
-    width: 100%;
+    width: 360px;
     position: absolute;
     left: 20px;
     top: 20px;
@@ -16,7 +16,7 @@ body {
     font-size: 14px;
 }
 #searchtext{
-    width: 50%;
+    width: 300px;
     border: 1px solid #e7e4e4;
     height: 32px;
     float: left;
@@ -29,9 +29,11 @@ body {
     width: 60px;
     height: 32px;
     float: left;
-    background: black;
+    background: rgb(0, 0, 255);
     text-align: center;
-    color: white;
+    color: rgb(243, 239, 239);
+    border:none;
+    border-radius: 4px;
 }
 
 #route{
@@ -44,13 +46,15 @@ body {
 #startbtn{
     width: 80px;
     height: 32px;
-    background: black;
-    color: white;
+    background: rgb(0, 0, 255);
+    color: rgb(243, 239, 239);
     text-align: center;
     line-height: 32px;
+    border:none;
+    border-radius: 4px;
 }
 #startpoint{
-    width: 200px;
+    width: 220px;
     border: 1px solid #e7e4e4;
     height: 32px;
     background-repeat: no-repeat;
@@ -61,13 +65,15 @@ body {
 #endbtn{
     width: 80px;
     height: 32px;
-    background: black;
-    color: white;
+    background: rgb(0, 0, 255);
+    color: rgb(243, 239, 239);
     text-align: center;
     line-height: 32px;
+    border:none;
+    border-radius: 4px;
 }
 #endpoint{
-    width: 200px;
+    width: 220px;
     border: 1px solid #e7e4e4;
     height: 32px;
     background-repeat: no-repeat;
@@ -78,28 +84,50 @@ body {
 #routenav{
     width: 80px;
     height: 32px;
-    background: black;
-    color: white;
+    background: rgb(0, 0, 255);
+    color: rgb(243, 239, 239);
     text-align: center;
     line-height: 32px;
+    border:none;
+    border-radius: 4px;
+}
+
+#pos{
+    position: absolute;
+    right: 10px;
+    bottom: 105px;
+    border-collapse: collapse
 }
 
 #position_j{
-    width: 80px;
-    height: 32px;
-    background: black;
-    color: white;
+    width: 30px;
+    height: 30px;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     text-align: center;
     line-height: 32px;
+    border: none;
+    border-radius: 4px;
 }
+
 #position_b{
-    width: 80px;
-    height: 32px;
-    background: black;
-    color: white;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-style: none;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    border: none;
     text-align: center;
     line-height: 32px;
 }
+/* #position_b{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-style: none;
+    border-radius: 4px;
+} */
 #position_t{
     width: 80px;
     height: 32px;
@@ -118,13 +146,13 @@ body {
 }
 #zoom-level{
     position: absolute;
-    height: 30px;
+    height: 20px;
     padding-left: 10px;
     padding-right: 10px;
     z-index: 999;
-    background:#EED2EE;
+    background:rgb(255, 255, 255);
     left: 0px;
     bottom: 0px;
     font-family: 'Microsoft YaHei';
-    line-height: 30px;
+    line-height: 20px;
 }
