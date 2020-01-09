@@ -358,6 +358,8 @@ function getposition_b(){
             var wgs84_cor = gcj02towgs84(lon_gc02, lat_gc02);
             var lon = wgs84_cor[0];
             var lat = wgs84_cor[1];
+            // var lon = lon_gc02;
+            // var lat = lat_gc02;
             // console.log(typeof(wgs84_cor));
             // console.log('wgs84坐标：'+wgs84_cor)
             console.log("当前经度："+lon);
