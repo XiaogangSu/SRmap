@@ -102,7 +102,9 @@ body {
 #position_j{
     width: 30px;
     height: 30px;
-    background: rgb(255, 255, 255);
+    background: url("../icon/pos.png") no-repeat;
+    background-size: 100%;
+    background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     text-align: center;
     line-height: 32px;
@@ -113,8 +115,8 @@ body {
 #position_b{
     width: 30px;
     height: 30px;
-    background-image: url("../icon/pos2.png") no-repeat;
-    background-color: transparent;
+    background: url("../icon/pos2.png") no-repeat;
+    background-size: 100%;
     background-color: rgb(255, 255, 255);
     border-style: none;
     border-radius: 4px;
