@@ -180,13 +180,17 @@ function gcj02towgs84(lng, lat) {
 }
 
 //定义起点点击函数
-map.loadImage('./icon/begin.png', function(error, image) {
+map.loadImage('./icon/begin2.png', function(error, image) {
     if (error) throw error;
     if (!map.hasImage('startimg')) map.addImage('startimg', image);
 });
-map.loadImage('./icon/end.png', function(error, image) {
+map.loadImage('./icon/end2.png', function(error, image) {
     if (error) throw error;
     if (!map.hasImage('endimg')) map.addImage('endimg',image);
+});
+map.loadImage('./icon/position.png', function(error, image) {
+    if (error) throw error;
+    if (!map.hasImage('positionimg')) map.addImage('positionimg',image);
 });
 function startonclick(e){
     var nowcor = e.lngLat;
@@ -237,7 +241,8 @@ function startonclick(e){
         'type': 'symbol',
         'source': 'startpoint',
         'layout': {
-            'icon-image': 'startimg'
+            'icon-image': 'startimg',
+            'icon-size': 0.2
         }
     })
     return(nowcor);
@@ -292,7 +297,8 @@ function endonclick(e){
         'type': 'symbol',
         'source': 'endpoint',
         'layout': {
-            'icon-image': 'endimg'
+            'icon-image': 'endimg',
+            'icon-size': 0.2
         }
     })
     return(nowcor);
@@ -366,17 +372,15 @@ function getposition_b(){
                 'type': "geojson",
                 'data': posjson
             });
-            map.loadImage('./icon/begin.png', function(error, image) {
-                if (error) throw error;
-                if (!map.hasImage('posicon')) map.addImage('posicon', image);
-            });
+
             // map.addImage('posiconid', posicon);
             map.addLayer({
                 'id': "poslayer",
                 'type': 'symbol',
                 'source': 'pospoint',
                 'layout': {
-                    'icon-image': 'posicon'
+                    'icon-image': 'positionimg',
+                    'icon-size': 0.2
                 }
             })
         }
@@ -411,17 +415,14 @@ function getposition_j(){
             'type': "geojson",
             'data': posjson
         });
-        map.loadImage('./icon/begin.png', function(error, image) {
-            if (error) throw error;
-            if (!map.hasImage('posicon')) map.addImage('posicon', image);
-        });
         // map.addImage('posiconid', posicon);
         map.addLayer({
             'id': "poslayer",
             'type': 'symbol',
             'source': 'pospoint',
             'layout': {
-                'icon-image': 'posicon'
+                'icon-image': 'positionimg',
+                'icon-size': 0.2
             }
         })
 
