@@ -343,13 +343,22 @@ function getposition_b(){
     geolocation.enableSDKLocation();
     geolocation.getCurrentPosition(function(r){
         if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            var layerids = getlayer();
+            // console.log(layerids);
+            //检查起始点图层是否存在，若存在则删除
+            for (var i=0; i<layerids.length; i++){
+                if(layerids[i].search('Bpospoint') != -1){
+                    map.removeLayer(layerids[i]);
+                    map.removeSource(layerids[i]);
+                }  
+            }
             console.log('百度定位坐标：'+r.point.lng+','+r.point.lat);
             var lon_gc02 = r.point.lng;
             var lat_gc02 = r.point.lat
             var wgs84_cor = gcj02towgs84(lon_gc02, lat_gc02);
             var lon = wgs84_cor[0];
             var lat = wgs84_cor[1];
-            console.log(typeof(wgs84_cor));
+            // console.log(typeof(wgs84_cor));
             // console.log('wgs84坐标：'+wgs84_cor)
             console.log("当前经度："+lon);
             console.log("当前纬度："+lat);
@@ -368,16 +377,16 @@ function getposition_b(){
                 }]
             }
     
-            map.addSource('pospoint',{
+            map.addSource('Bpospoint',{
                 'type': "geojson",
                 'data': posjson
             });
 
             // map.addImage('posiconid', posicon);
             map.addLayer({
-                'id': "poslayer",
+                'id': "Bpospoint",
                 'type': 'symbol',
-                'source': 'pospoint',
+                'source': 'Bpospoint',
                 'layout': {
                     'icon-image': 'positionimg',
                     'icon-size': 0.2
@@ -393,6 +402,15 @@ function getposition_b(){
 //使用js原生定位
 function getposition_j(){
     navigator.geolocation.getCurrentPosition(function (position) {
+        var layerids = getlayer();
+        // console.log(layerids);
+        //检查起始点图层是否存在，若存在则删除
+        for (var i=0; i<layerids.length; i++){
+            if(layerids[i].search('Jpospoint') != -1){
+                map.removeLayer(layerids[i]);
+                map.removeSource(layerids[i]);
+            }  
+        }
         var lon = position.coords.longitude;
         var lat = position.coords.latitude
         console.log("当前经度："+lon);
@@ -411,15 +429,16 @@ function getposition_j(){
                 }
             }]
         }
-        map.addSource('pospoint',{
+        map.addSource('Jpospoint',{
             'type': "geojson",
             'data': posjson
         });
+        
         // map.addImage('posiconid', posicon);
         map.addLayer({
-            'id': "poslayer",
+            'id': "Jpospoint",
             'type': 'symbol',
-            'source': 'pospoint',
+            'source': 'Jpospoint',
             'layout': {
                 'icon-image': 'positionimg',
                 'icon-size': 0.2
