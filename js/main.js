@@ -178,6 +178,17 @@ function gcj02towgs84(lng, lat) {
         return [lng * 2 - mglng, lat * 2 - mglat]
     }
 }
+function bd09togcj02(bd_lon, bd_lat){
+    var bd_lon = +bd_lon;
+    var bd_lat = +bd_lat;
+    var x = bd_lon - 0.0065;
+    var y = bd_lat - 0.006;
+    var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_PI);
+    var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_PI);
+    var gg_lng = z * Math.cos(theta);
+    var gg_lat = z * Math.sin(theta);
+    return [gg_lng, gg_lat]
+}
 
 //定义起点点击函数
 map.loadImage('./icon/begin2.png', function(error, image) {
@@ -353,9 +364,10 @@ function getposition_b(){
                 }  
             }
             console.log('百度定位坐标：'+r.point.lng+','+r.point.lat);
-            var lon_gc02 = r.point.lng;
-            var lat_gc02 = r.point.lat
-            var wgs84_cor = gcj02towgs84(lon_gc02, lat_gc02);
+            var lon_bd09 = r.point.lng;
+            var lat_bd09 = r.point.lat;
+            var gc02_cor = bd09togcj02(lon_bd09, lat_bd09);
+            var wgs84_cor = gcj02towgs84(gc02_cor[0], gc02_cor[1]);
             var lon = wgs84_cor[0];
             var lat = wgs84_cor[1];
             // var lon = lon_gc02;
