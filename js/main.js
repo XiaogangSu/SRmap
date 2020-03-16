@@ -574,4 +574,21 @@ function routenav(){
     });
 }
 
+//添加poi
+function add_poi(){
+    document.getElementById("poi").style.display = "block";
+    let video = document.getElementById("video");
+    let constraints = {
+        video: {width: 500, height: 500},
+        audio: true
+    };
+    let promise = navigator.mediaDevices.getUserMedia(constraints);
+    promise.then(function (MediaStream) {
+        video.srcObject = MediaStream;
+        video.play();
+    }).catch(function (PermissionDeniedError) {
+        console.log(PermissionDeniedError);
+    })
+
+}
 
