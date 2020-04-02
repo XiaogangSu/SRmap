@@ -68,11 +68,11 @@ map.on('zoomend', function(){
 //获取url返回结果
 function urlback(urlroute){
     var urldata;
-    $.ajaxSettings.async = false;  
+    $.ajaxSettings.async = false;
     $.ajax({
         url: urlroute,
-        contentType: "application/json;charset=uft-8", 
-        dataType: "json", 
+        contentType: "application/json;charset=uft-8",
+        dataType: "json",
         success: function success(retData) {
             var reqdata = retData['paths'][0]["points"]["coordinates"];
             var polylinecor = [];
@@ -85,11 +85,11 @@ function urlback(urlroute){
                 polylinecor.push(reqdata[i])
             }
             urldata = polylinecor;
-        }, 
-        error: function error(httpRequest) { 
-            console.log("请求失败"); 
-            return false; 
-        } 
+        },
+        error: function error(httpRequest) {
+            console.log("请求失败");
+            return false;
+        }
     });
     return(urldata);
 }
@@ -119,14 +119,14 @@ function getnowtime(){
 }
 
 // 坐标偏移
-//定义一些常量
-var x_PI = 3.14159265358979324 * 3000.0 / 180.0;//{{{
+//定义一些常量{{{
+var x_PI = 3.14159265358979324 * 3000.0 / 180.0;
 var PI = 3.1415926535897932384626;
 var a = 6378245.0;
-var ee = 0.00669342162296594323;//}}}
+var ee = 0.00669342162296594323;
 //坐标偏移
 function out_of_china(lng, lat) {
-  return (lng < 72.004 || lng > 137.8347) || ((lat < 0.8293 || lat > 55.8271) || false);//{{{
+    return (lng < 72.004 || lng > 137.8347) || ((lat < 0.8293 || lat > 55.8271) || false);
 }
 function transformlat(lng, lat) {
     var ret = -100.0 + 2.0 * lng + 3.0 * lat + 0.2 * lat * lat + 0.1 * lng * lat + 0.2 * Math.sqrt(Math.abs(lng));
@@ -188,7 +188,7 @@ function bd09togcj02(bd_lon, bd_lat){
     var gg_lng = z * Math.cos(theta);
     var gg_lat = z * Math.sin(theta);
     return [gg_lng, gg_lat]
-}
+}//}}}
 
 //定义起点点击函数
 map.loadImage('./icon/begin2.png', function(error, image) {
@@ -213,7 +213,7 @@ function startonclick(e){
         if(layerids[i].search('startpoint') != -1){
             map.removeLayer(layerids[i]);
             map.removeSource(layerids[i]);
-        }  
+        }
     }
     var startjson = {
         'type': 'FeatureCollection',
@@ -245,7 +245,7 @@ function startonclick(e){
     //         'text-anchor': 'top'
     //     }
     // })
-    
+
     // map.addImage('posiconid', posicon);
     map.addLayer({
         'id': "startpoint",
@@ -269,7 +269,7 @@ function endonclick(e){
         if(layerids[i].search('endpoint') != -1){
             map.removeLayer(layerids[i]);
             map.removeSource(layerids[i]);
-        }  
+        }
     }
     var endjson = {
         'type': 'FeatureCollection',
@@ -301,7 +301,7 @@ function endonclick(e){
     //         'text-anchor': 'top'
     //     }
     // })
-    
+
     // map.addImage('posiconid', posicon);
     map.addLayer({
         'id': "endpoint",
@@ -329,7 +329,7 @@ function getendpoint(){
 
 //获取当前位置..clear
 function localpos(){
-    var geolocation = new BMap.Geolocation(); 
+    var geolocation = new BMap.Geolocation();
     var lng = '';
     var lon = '';
     geolocation.getCurrentPosition(function(r){
@@ -350,7 +350,7 @@ function getposition_b(){
     //使用百度api定位
     var geolocation = new BMap.Geolocation({
         maximumAge:10
-    }); 
+    });
     geolocation.enableSDKLocation();
     geolocation.getCurrentPosition(function(r){
         if(this.getStatus() == BMAP_STATUS_SUCCESS){
@@ -361,7 +361,7 @@ function getposition_b(){
                 if(layerids[i].search('Bpospoint') != -1){
                     map.removeLayer(layerids[i]);
                     map.removeSource(layerids[i]);
-                }  
+                }
             }
             console.log('百度定位坐标：'+r.point.lng+','+r.point.lat);
             var lon_bd09 = r.point.lng;
@@ -390,7 +390,7 @@ function getposition_b(){
                     }
                 }]
             }
-    
+
             map.addSource('Bpospoint',{
                 'type': "geojson",
                 'data': posjson
@@ -423,7 +423,7 @@ function getposition_j(){
             if(layerids[i].search('Jpospoint') != -1){
                 map.removeLayer(layerids[i]);
                 map.removeSource(layerids[i]);
-            }  
+            }
         }
         var lon = position.coords.longitude;
         var lat = position.coords.latitude
@@ -447,7 +447,7 @@ function getposition_j(){
             'type': "geojson",
             'data': posjson
         });
-        
+
         // map.addImage('posiconid', posicon);
         map.addLayer({
             'id': "Jpospoint",
@@ -472,7 +472,7 @@ function getposition_j(){
 //腾讯api定位
 function getposition_t(){
     //使用百度api定位
-    var geolocation = new BMap.Geolocation(); 
+    var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function(r){
         if(this.getStatus() == BMAP_STATUS_SUCCESS){
             console.log('您的位置：'+r.point.lng+','+r.point.lat);
@@ -499,7 +499,7 @@ function getposition_t(){
                     }
                 }]
             }
-    
+
             map.addSource('pospoint',{
                 'type': "geojson",
                 'data': posjson
@@ -545,9 +545,9 @@ function routenav(){
         if(layerids[i].search(userid+sub) != -1){
             map.removeLayer(layerids[i]);
             map.removeSource(layerids[i]);
-        }  
+        }
     }
-    
+
     var routelayerid = userid+sub+nowtime
     map.addLayer({
         'id': routelayerid,
@@ -568,7 +568,7 @@ function routenav(){
             'line-cap': 'round'
         },
         'paint': {
-            'line-color': 'rgba(0, 0, 128, 0.3)',
+            'line-color': 'rgba(255, 106, 106, 0.6)',
             'line-width': 5
         }
     });
@@ -591,4 +591,3 @@ function add_poi(){
     })
 
 }
-
