@@ -38,13 +38,19 @@
         </tr>
         <tr>
             <td><button id="addpoi" type="button" onclick=add_poi()>Add Poi</button></td>
-            <td>
+            <!-- <td>
                 <div id="poi">
                     <input type="file" accept="image/*" multiple capture="camera" value="Add Poi">
                 </div>>
-            </td>> 
+            </td>>  -->
         </tr>
     </table>
+    <div id="poi">
+        <input id="take_photo" type="file" accept="image/*" multiple capture="camera" value="Add Poi">
+        <!-- <video id="video" autoplay="autoplay"></video>
+        <button id="photo" type="button" onclick=takephoto()>Take a picture</button>>
+        <button id="endpoi" type="button" onclick=closepoi()>Close</button>> -->
+    </div>>
     <table id="pos" border="0px">
         <tr>
             <th><button id="position_b" type="button" onclick=getposition_b()></button></th>
@@ -53,12 +59,6 @@
             <th><button id="position_j" type="button" onclick=getposition_j()></button></th>
         </tr>
     </table>
-    <div id="poi">
-        <input type="file" accept="image/*" multiple capture="camera" value="Add Poi">
-        <!-- <video id="video" autoplay="autoplay"></video>
-        <button id="photo" type="button" onclick=takephoto()>Take a picture</button>>
-        <button id="endpoi" type="button" onclick=closepoi()>Close</button>> -->
-    </div>>
     
     <!-- <button id="position_j" type="button" onclick=getposition_j()>J</button>
     <button id="position_b1" type="button" onclick=getposition_b()><img id="position_b" src='./icon/pos.png' width=25,height=25/></button> -->
