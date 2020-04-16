@@ -122,22 +122,66 @@ body {
     z-index: 97;
     display:none;
 }
-#take_photo{
+/*a  upload */
+.a-upload {
+    padding: 4px 10px;
+    height: 20px;
+    line-height: 20px;
     position: absolute;
     left: 15px;
     top: 15px;
-    opacity:0.9;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
+
+#take_photo{
+    opacity:0.0;
 }
 #endpoi{
     position: absolute;
     left: 15px;
     bottom: 10px;
-    background:#dedede;
-    border-width: 0px;
-    border-radius:2px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
     cursor: pointer;
-    outline: none;
-    z-index: 98;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+}
+#endpoi:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
 }
 
 #pos{
