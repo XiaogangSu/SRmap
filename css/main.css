@@ -1,6 +1,6 @@
 body {
-    margin: 0; 
-    padding: 0; 
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 #map {
@@ -113,7 +113,7 @@ body {
     top: 0px;
     margin-top: 5px;
     margin-left: 5px;
-    margin-right: 50px; /*该设置无效，暂未找到解决办法*/ 
+    margin-right: 50px; /*该设置无效，暂未找到解决办法*/
     border-radius: 5px;
     width: 100%;
     height: 75%;
@@ -160,6 +160,11 @@ body {
 
 #take_photo{
     opacity:0.0;
+}
+#poi_info{
+    position: absolute;
+    left: 15px;
+    top: 50px
 }
 #endpoi{
     position: absolute;

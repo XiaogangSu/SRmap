@@ -17,12 +17,12 @@
             <th><button id="search" type="button">Search</button></th>
         </tr>
     </table>
-    
+
     <!-- <div id="searchbox">
         <input id="searchtext" type="text" name="search" placeholder="Input key value">
         <button id="search" type="button">Search</button>
     </div> -->
-    
+
     <!-- 路径导航 -->
     <table id="route">
         <tr>
@@ -39,18 +39,37 @@
         <tr>
             <td><button id="addpoi" type="button" onclick=add_poi()>Add Poi</button></td>
             <!-- <td>
-                <div id="poi">
-                    <input type="file" accept="image/*" multiple capture="camera" value="Add Poi">
-                </div>>
-            </td>>  -->
+                <a class='a-upload'>
+                    <input id="take_photo" type="file" accept="image/*" capture="camera">Add Poi
+                </a>
+            </td> -->
         </tr>
     </table>
     <div id="poi">
         <a class='a-upload'>
             <input id="take_photo" type="file" accept="image/*" capture="camera">Take Picture
         </a>
-        <button id="endpoi" type="button" onclick=closepoi()> Finish </button> 
+        <table id="poi_info">
+            <tr>
+                <th align="right"><label>Name:</label></th>
+                <th align="left"><input id="poiname" type="text"></th>
+            </tr>
+            <tr>
+                <th align="right"><label>Address:</label></th>
+                <th align="left"><input id="poiaddress" type="text"></th>
+            </tr>
+            <tr>
+                <th align="right"><label>Type:</label></th>
+                <th align="left"><input id="poitype" type="text"></th>
+            </tr>
+            <tr>
+                <th align="right"><label>Phone:</label></th>
+                <th align="left"><input id="poiphone" type="text"></th>
+            </tr>
+        </table>
+        <button id="endpoi" type="button" onclick=closepoi()> Finish </button>
     </div>>
+
     <table id="pos" border="0px">
         <tr>
             <th><button id="position_b" type="button" onclick=getposition_b()></button></th>
@@ -59,7 +78,7 @@
             <th><button id="position_j" type="button" onclick=getposition_j()></button></th>
         </tr>
     </table>
-    
+
     <!-- <button id="position_j" type="button" onclick=getposition_j()>J</button>
     <button id="position_b1" type="button" onclick=getposition_b()><img id="position_b" src='./icon/pos.png' width=25,height=25/></button> -->
     <!-- <button id="position_b" type="button" onclick=getposition_b()><img src='./icon/pos.png' width=25,height=25/></button> -->
