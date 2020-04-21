@@ -590,7 +590,19 @@ function add_poi(){
     //     console.log(PermissionDeniedError);
     // })
 }
+//拍照
+$('#take_photo').change(function () {
+    let fileObj = this.files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(fileObj);
+    fileReader.onload = function(){ 
+       $('#id_img').attr('src',fileReader.result)
+    }
+    document.getElementById('id_img').style.display='inline';
+});
+
 //关闭POI采集窗口
 function closepoi(){
     document.getElementById("poi").style.display="none"
 }
+

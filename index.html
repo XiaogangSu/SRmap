@@ -46,9 +46,10 @@
         </tr>
     </table>
     <div id="poi">
-        <a class='a-upload'>
-            <input id="take_photo" type="file" accept="image/*" capture="camera">Take Picture
-        </a>
+        <img src="" id="id_img">
+        <button class='a-upload' function=getpic()>
+            <input id="take_photo" type="file" accept="image/*" capture="camera">
+        </button>
         <table id="poi_info">
             <tr>
                 <th align="right"><label>Name:</label></th>
@@ -67,7 +68,7 @@
                 <th align="left"><input id="poiphone" type="text"></th>
             </tr>
         </table>
-        <button id="endpoi" type="button" onclick=closepoi()> Finish </button>
+        <button id="endpoi" type="button" onclick=closepoi()></button>
     </div>>
 
     <table id="pos" border="0px">
