@@ -203,11 +203,16 @@ map.loadImage('./icon/position.png', function(error, image) {
     if (error) throw error;
     if (!map.hasImage('positionimg')) map.addImage('positionimg',image);
 });
+map.loadImage('./icon/poi.png', function(error, image) {
+    if (error) throw error;
+    if (!map.hasImage('poiImg')) map.addImage('poiImg',image);
+});
+
 function startonclick(e){
     var nowcor = e.lngLat;
     $("#startpoint").val(nowcor.lat.toFixed(7)+','+nowcor.lng.toFixed(7));
     var layerids = getlayer();
-    // console.log(layerids);
+    console.log(layerids);
     //检查起始点图层是否存在，若存在则删除
     for (var i=0; i<layerids.length; i++){
         if(layerids[i].search('startpoint') != -1){
@@ -233,20 +238,7 @@ function startonclick(e){
         'type': "geojson",
         'data': startjson
     });
-    // map.addLayer({
-    //     'id': "startpoint",
-    //     'type': 'symbol',
-    //     'source': 'startpoint',
-    //     'layout': {
-    //         'icon-image': ['concat', ['get', 'icon'], '-15'],
-    //         'text-field': ['get', 'title'],
-    //         'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-    //         'text-offset': [0, 0.6],
-    //         'text-anchor': 'top'
-    //     }
-    // })
 
-    // map.addImage('posiconid', posicon);
     map.addLayer({
         'id': "startpoint",
         'type': 'symbol',
@@ -317,12 +309,14 @@ function endonclick(e){
 //获取起点坐标
 function getstartpoint(){
     console.log('获取起点坐标！');
+    map.off('click', locpoi_click);
     map.off('click', endonclick);
     map.on('click', startonclick);
 }
 //获取终点坐标
 function getendpoint(){
     console.log('获取终点坐标！');
+    map.off('click', locpoi_click);
     map.off('click', startonclick);
     map.on('click', endonclick);
 }
@@ -600,6 +594,59 @@ $('#take_photo').change(function () {
     }
     document.getElementById('id_img').style.display='inline';
 });
+
+//选择poi点位
+function locpoi_click(e){
+    var nowcor = e.lngLat;
+    $("#poipoint").val(nowcor.lat.toFixed(7)+','+nowcor.lng.toFixed(7));
+    var layerids = getlayer();
+     console.log(layerids);
+    //检查poi点图层是否存在，若存在则删除
+    for (var i=0; i<layerids.length; i++){
+        if(layerids[i].search('poipoint') != -1){
+            map.removeLayer(layerids[i]);
+            map.removeSource(layerids[i]);
+        }
+    }
+    var poijson = {
+        'type': 'FeatureCollection',
+        'features':[{
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [nowcor.lng, nowcor.lat]
+            },
+            'properties': {
+                'title': 'poi',
+                'description': 'poi点',
+            }
+        }]
+    }
+    // source,layer用一个id名称，以便移除方便
+    map.addSource('poipoint',{
+        'type': "geojson",
+        'data': poijson
+    });
+    map.addLayer({
+        'id': "poipoint",
+        'type': 'symbol',
+        'source': 'poipoint',
+        'layout': {
+            'icon-image': 'poiImg',
+            'icon-size': 0.2
+        }
+    })
+    document.getElementById("poi").style.display="block"
+    return(nowcor);
+}
+
+function locpoi(){
+    document.getElementById("poi").style.display = "none";
+    console.log('获取poi点坐标！');
+    map.off('click', endonclick);
+    map.off('click', startonclick);
+    map.on('click', locpoi_click);
+}
 
 //关闭POI采集窗口
 function closepoi(){
