@@ -7,6 +7,23 @@ body {
     height: 100%;
     width: 100%;
 }
+/* 登录窗口 */
+#logGet{
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    left: 25%;
+    top: 35%;
+    margin: 0; 
+    padding: 0;
+    background-color: #78aae0;
+    z-index: 999;
+}
+#frm1{
+    margin: 0 auto;
+    position: relative;
+}
+
 #searchbox{
     width: 360px;
     position: absolute;
@@ -35,7 +52,6 @@ body {
     border:none;
     border-radius: 4px;
 }
-
 #route{
     position: absolute;
     left: 20px;

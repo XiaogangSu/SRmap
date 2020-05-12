@@ -208,6 +208,31 @@ map.loadImage('./icon/poi.png', function(error, image) {
     if (!map.hasImage('poiImg')) map.addImage('poiImg',image);
 });
 
+//用户登录
+host='http://121.199.14.136:5001';
+function loginSubmit(){
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    console.log(username+"  "+password);
+    url = host+"/auth/get_token"+'?username='+username+"&password="+password;
+    console.log("url:"+url);
+    $.ajax({
+        url: url,
+        contentType: "application/json;charset=uft-8",
+        dataType: "json",
+        success: function success(retData) {
+            console.log("登录成功！");
+            var token = retData["token"];
+            console.log("token:", token);
+            document.getElementById("logGet").style.display = "none";
+        },
+        error: function error(httpRequest) {
+            console.log("请求失败");
+            return false;
+        }
+    });
+}
+
 function startonclick(e){
     var nowcor = e.lngLat;
     $("#startpoint").val(nowcor.lat.toFixed(7)+','+nowcor.lng.toFixed(7));
