@@ -215,7 +215,8 @@ function loginSubmit(){
     var password = document.getElementById("password").value;
     console.log(username+"  "+password);
     url = host+"/auth/get_token"+'?username='+username+"&password="+password;
-    console.log("url:"+url);
+    parameterstr = 'username='+username+"&password="+password
+    console.log("parameter:"+parameterstr);
     $.ajax({
         url: url,
         contentType: "application/json;charset=uft-8",
