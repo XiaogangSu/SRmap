@@ -229,13 +229,13 @@ function loginSubmit(){
         success: function success(retData) {
             console.log(retData['msg']);
             if(retData.hasOwnProperty("token")){
-                console.log("登录成功！");
+                console.log("Sign in success!");
                 var token = retData["token"];
                 console.log("token:", token);
                 document.getElementById("logGet").style.display = "none";
             }
             else{
-                alert("账号或密码错误，请重新输入！")
+                alert("Account number or password error, login failed");
             }
         },
         error: function error(httpRequest) {
