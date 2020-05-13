@@ -214,18 +214,29 @@ function loginSubmit(){
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     console.log(username+"  "+password);
-    url = host+"/auth/get_token"+'?username='+username+"&password="+password;
-    parameterstr = 'username='+username+"&password="+password
-    console.log("parameter:"+parameterstr);
+    // url = host+"/auth/get_token"+'?username='+username+"&password="+password;
+    url = host+"/auth/get_token"
+    console.log("url:"+url);
     $.ajax({
+        type: "post",
         url: url,
-        contentType: "application/json;charset=uft-8",
+        // contentType: "application/json;charset=uft-8",
         dataType: "json",
+        data: {
+            "username":username,
+            "password":password
+        },
         success: function success(retData) {
-            console.log("登录成功！");
-            var token = retData["token"];
-            console.log("token:", token);
-            document.getElementById("logGet").style.display = "none";
+            console.log(retData['msg']);
+            if(retData.hasOwnProperty("token")){
+                console.log("登录成功！");
+                var token = retData["token"];
+                console.log("token:", token);
+                document.getElementById("logGet").style.display = "none";
+            }
+            else{
+                alert("账号或密码错误，请重新输入！")
+            }
         },
         error: function error(httpRequest) {
             console.log("请求失败");
