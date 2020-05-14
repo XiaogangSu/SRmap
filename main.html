@@ -63,23 +63,26 @@
         <table id="poi_info">
             <tr>
                 <th align="right"><label>Name:</label></th>
-                <th align="left"><input id="poiname" type="text"></th>
+                <th align="left"><input id="poiname" type="text" value="poi name"></th>
             </tr>
             <tr>
                 <th align="right"><label>Address:</label></th>
-                <th align="left"><input id="poiaddress" type="text"></th>
+                <th align="left"><input id="poiaddress" type="text" value="poi address"></th>
             </tr>
             <tr>
                 <th align="right"><label>Type:</label></th>
-                <th align="left"><input id="poitype" type="text"></th>
+                <th align="left"><input id="poitype" type="text" value="poi type"></th>
             </tr>
             <tr>
                 <th align="right"><label>Phone:</label></th>
-                <th align="left"><input id="poiphone" type="text"></th>
+                <th align="left"><input id="poiphone" type="text" value="+86"></th>
             </tr>
             <tr>
                 <th align="right"><button id="loc_poi" type="button" onclick=locpoi()>Location</button></th>
                 <th align="left"><input id="poipoint" type="text"></th>
+            </tr>
+            <tr>
+                <th align="right"><button type="button" onclick=subpoi()>Finish</button></th>
             </tr>
         </table>
         <button id="endpoi" type="button" onclick=closepoi()></button>

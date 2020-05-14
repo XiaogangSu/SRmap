@@ -215,7 +215,7 @@ function loginSubmit(){
     var password = document.getElementById("password").value;
     console.log(username+"  "+password);
     // url = host+"/auth/get_token"+'?username='+username+"&password="+password;
-    url = host+"/auth/get_token"
+    var url = host+"/auth/get_token"
     console.log("url:"+url);
     $.ajax({
         type: "post",
@@ -227,11 +227,12 @@ function loginSubmit(){
             "password":password
         },
         success: function success(retData) {
+            console.log(retData);
             console.log(retData['msg']);
             if(retData.hasOwnProperty("token")){
                 console.log("Sign in success!");
-                var token = retData["token"];
-                console.log("token:", token);
+                usertoken = retData["token"];
+                console.log("token:", usertoken);
                 document.getElementById("logGet").style.display = "none";
             }
             else{
@@ -683,6 +684,46 @@ function locpoi(){
     map.off('click', endonclick);
     map.off('click', startonclick);
     map.on('click', locpoi_click);
+}
+
+//提交poi信息
+function subpoi(){
+    console.log('sub poi info!');
+    console.log($("#take_photo").val());
+    var formData = new FormData();
+    var file = $("#take_photo")[0].files[0];
+    formData.append("file", file);
+    var url = host+"/dao/upload";
+    console.log("token:", usertoken);
+    $.ajax({
+        type: "post",
+        headers: {
+            "token": usertoken,
+        },
+        url: url,
+        processData: false,
+        contentType: false,
+        data: formData,
+        beforeSend: function () {
+            console.log("正在进行，请稍候");
+        },
+        success: function success(retData) {
+            var redData_ob = JSON.parse(retData);
+            console.log(redData_ob['msg']);
+            console.log(redData_ob['md5']);
+            if(redData_ob.hasOwnProperty("md5")){
+                var picmd5 = redData_ob["md5"];
+                console.log("picmd5:", picmd5);
+            }
+            else{
+                alert("picture upload failed!");
+            }
+        },
+        error: function error(httpRequest) {
+            console.log("请求失败");
+            return false;
+        }
+    });
 }
 
 //关闭POI采集窗口
