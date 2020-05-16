@@ -636,7 +636,7 @@ $('#take_photo').change(function () {
 //选择poi点位
 function locpoi_click(e) {
     var nowcor = e.lngLat;
-    $("#poipoint").val(nowcor.lat.toFixed(7) + ',' + nowcor.lng.toFixed(7));
+    $("#poiloc").val(nowcor.lat.toFixed(7) + ',' + nowcor.lng.toFixed(7));
     var layerids = getlayer();
     console.log(layerids);
     //检查poi点图层是否存在，若存在则删除
@@ -686,26 +686,64 @@ function locpoi() {
     map.on('click', locpoi_click);
 }
 
+//string2bytes
+function str2UTF8(str){
+	var bytes = new Array(); 
+	var len,c;
+	len = str.length;
+	for(var i = 0; i < len; i++){
+		c = str.charCodeAt(i);
+		if(c >= 0x010000 && c <= 0x10FFFF){
+			bytes.push(((c >> 18) & 0x07) | 0xF0);
+			bytes.push(((c >> 12) & 0x3F) | 0x80);
+			bytes.push(((c >> 6) & 0x3F) | 0x80);
+			bytes.push((c & 0x3F) | 0x80);
+		}else if(c >= 0x000800 && c <= 0x00FFFF){
+			bytes.push(((c >> 12) & 0x0F) | 0xE0);
+			bytes.push(((c >> 6) & 0x3F) | 0x80);
+			bytes.push((c & 0x3F) | 0x80);
+		}else if(c >= 0x000080 && c <= 0x0007FF){
+			bytes.push(((c >> 6) & 0x1F) | 0xC0);
+			bytes.push((c & 0x3F) | 0x80);
+		}else{
+			bytes.push(c & 0xFF);
+		}
+	}
+	return bytes;
+}
+
 //提交poi信息
 function subpoi() {
     console.log('sub poi info!');
     console.log("token:", usertoken);
-    console.log("picval:" + $("#take_photo").val());
-    if ($("#take_photo").val() == '') {
-        alert("Please select picture!")
+    var photo = $("#take_photo").val();
+    console.log('photo='+photo);
+    var name = $("#poiname").val();
+    var type = $("#poitype").val();
+    var address = $("#poiaddress").val();
+    var phone = $("#poiphone").val();
+    var loc = $("#poiloc").val();   //string
+    var cor = new Array();
+    cor[0] = parseFloat(loc.split(",")[1]);
+    cor[1] = parseFloat(loc.split(",")[0]);
+    var poigj = {"type":"Point","coordinates":cor}
+    if (photo==''||name==''||type==''||loc=='') {
+        alert("Missing poi information!")
     }
     else {
         var formData = new FormData();
         var file = $("#take_photo")[0].files[0];
         formData.append("file", file);
-        var url = host + "/dao/upload";
+        var url_pic = host + "/dao/upload";
         var md5list = new Array();
+        //上传照片
         $.ajax({
             type: "post",
             headers: {
                 "token": usertoken,
             },
-            url: url,
+            async: false,
+            url: url_pic,
             processData: false,
             contentType: false,
             data: formData,
@@ -720,6 +758,7 @@ function subpoi() {
                     var picmd5 = redData_ob["md5"];
                     console.log("picmd5:", picmd5);
                     md5list.push(picmd5);
+                    console.log('图片上传成功！')
                 }
                 else {
                     alert("picture upload failed!");
@@ -730,8 +769,42 @@ function subpoi() {
                 return false;
             }
         });
+        //上传feature信息
         console.log('照片md5序列：');
         console.log(md5list);
+        var fea = {};
+        fea.title = "First poi";
+        fea.layer = "layerid";
+        fea.gj = poigj;
+        var attri = {"name":name,"type":type,"address":address,"phone":phone,"md5_list":md5list};
+        fea.attrs = attri;
+        var fea_str = JSON.stringify(fea);
+        // var fea_byte = str2UTF8(fea_str);
+        // console.log(fea_byte);
+        var url_fea = host + '/dao/add_feature';
+        $.ajax({
+            type: "post",
+            headers: {
+                "token": usertoken,
+            },
+            async: false,
+            url: url_fea,
+            processData: false,
+            contentType: false,
+            data: fea_str,
+            // dataType: "json",
+            beforeSend: function () {
+                console.log("POI信息正在上传中...");
+            },
+            success: function success(retData) {
+                console.log(retData);
+                alert("Add POI success!")
+            },
+            error: function error(httpRequest) {
+                console.log("POI添加失败");
+                return false;
+            }
+        });
     }
 
 }

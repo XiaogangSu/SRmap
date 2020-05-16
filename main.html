@@ -58,7 +58,7 @@
     <div id="poi">
         <img src="" id="id_img">
         <button class='a-upload' function=getpic()>
-            <input id="take_photo" type="file" accept="image/*" capture="camera">
+            <input id="take_photo" type="file" multiple accept="image/*" capture="camera">
         </button>
         <table id="poi_info">
             <tr>
@@ -79,7 +79,7 @@
             </tr>
             <tr>
                 <th align="right"><button id="loc_poi" type="button" onclick=locpoi()>Location</button></th>
-                <th align="left"><input id="poipoint" type="text"></th>
+                <th align="left"><input id="poiloc" type="text"></th>
             </tr>
             <tr>
                 <th align="right"><button type="button" onclick=subpoi()>Finish</button></th>
