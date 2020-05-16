@@ -1,0 +1,284 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+#map {
+    height: 100%;
+    width: 100%;
+}
+/* 登录窗口 */
+#logGet{
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    left: 25%;
+    top: 35%;
+    margin: 0; 
+    padding: 0;
+    background-color: #78aae0;
+    z-index: 999;
+}
+#frm1{
+    margin: 0 auto;
+    position: relative;
+}
+
+#searchbox{
+    width: 360px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-family: 'Microsoft YaHei';
+    font-size: 14px;
+}
+#searchtext{
+    width: 300px;
+    border: 1px solid #e7e4e4;
+    height: 32px;
+    float: left;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position:5px center;
+    padding:0 0 0 20px;
+}
+#search{
+    width: 60px;
+    height: 32px;
+    float: left;
+    background: rgb(0, 0, 255);
+    text-align: center;
+    color: rgb(243, 239, 239);
+    border:none;
+    border-radius: 4px;
+}
+#route{
+    position: absolute;
+    left: 5px;
+    top: 40px;
+    font-family: 'Microsoft YaHei';
+    font-size: 14px;
+}
+#startbtn{
+    width: 80px;
+    height: 32px;
+    background: rgb(0, 255, 255);
+    color: rgb(243, 239, 239);
+    text-align: center;
+    line-height: 32px;
+    border:none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#startpoint{
+    width: 220px;
+    border: 1px solid #e7e4e4;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position:5px center;
+    /* padding:0 0 0 20px; */
+}
+#endbtn{
+    width: 80px;
+    height: 32px;
+    background: rgb(0, 0, 255);
+    color: rgb(243, 239, 239);
+    text-align: center;
+    line-height: 32px;
+    border:none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#endpoint{
+    width: 220px;
+    border: 1px solid #e7e4e4;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position:5px center;
+    /* padding:0 0 0 20px; */
+}
+#routenav{
+    width: 80px;
+    height: 32px;
+    background: rgb(0, 0, 255);
+    color: rgb(243, 239, 239);
+    text-align: center;
+    line-height: 32px;
+    border:none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#addpoi{
+    width: 80px;
+    height: 32px;
+    background: rgb(0, 0, 255);
+    color: rgb(243, 239, 239);
+    text-align: center;
+    line-height: 32px;
+    border:none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#poi{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 50px; /*该设置无效，暂未找到解决办法*/
+    border-radius: 5px;
+    width: 97%;
+    height: 65%;
+    background:#78aae0;
+    opacity: 0.9;
+    z-index: 97;
+    display:none;
+}
+/*a  upload */
+.a-upload {
+    padding: 4px 10px;
+    height: 20px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 30px;
+    height: 30px;
+    background: url("../icon/xiangji_1.png") no-repeat;
+    background-size: 100%;
+    text-align: center;
+    line-height: 32px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    color: #444;
+    /* background: #eee; */
+    background-color: #ccc;
+    text-decoration: none
+}
+
+#take_photo{
+    opacity:0.0;
+}
+#id_img{
+    width: 30%;
+    margin: 10px;
+    display: none;
+}
+#poi_info{
+    position: absolute;
+    left: 15px;
+    bottom: 50px;
+    border-spacing: 5px 5px;
+}
+#endpoi{
+    position: absolute;
+    right:5px;
+    top:5px;
+    width: 30px;
+    height: 30px;
+    background: url("../icon/guanbi_2.png") no-repeat;
+    background-size: 100%;
+    /* background-color: rgb(255, 255, 255); */
+    line-height: 32px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#endpoi:hover {
+    /* color: #444; */
+    /* background: rgba(180, 27, 27, 0.315); */
+    background-color: #ccc;
+    /* border-color: #ccc; */
+    /* text-decoration: none */
+}
+
+#pos{
+    position: absolute;
+    right: 10px;
+    bottom: 105px;
+    border-collapse: collapse
+}
+
+#position_j{
+    width: 30px;
+    height: 30px;
+    background: url("../icon/pos.png") no-repeat;
+    background-size: 100%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    line-height: 32px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#position_b{
+    width: 30px;
+    height: 30px;
+    background: url("../icon/pos3.png") no-repeat;
+    background-size: 100%;
+    background-color: rgb(255, 255, 255);
+    border-style: none;
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    line-height: 32px;
+    cursor: pointer;
+}
+/* #position_b{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-style: none;
+    border-radius: 4px;
+} */
+#position_t{
+    width: 80px;
+    height: 32px;
+    background: black;
+    color: white;
+    text-align: center;
+    line-height: 32px;
+}
+#trackpoint{
+    width: 80px;
+    height: 32px;
+    background: black;
+    color: white;
+    text-align: center;
+    line-height: 32px;
+}
+#zoom-level{
+    position: absolute;
+    height: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    z-index: 999;
+    background:rgb(255, 255, 255);
+    left: 0px;
+    bottom: 0px;
+    font-family: 'Microsoft YaHei';
+    line-height: 20px;
+}

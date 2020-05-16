@@ -1,5 +1,5 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw';
-//判断设备类型
+//判断设备类型为移动端还是PC端
 function IsPC() {
     // var width=window.screen.width;
     // alert("当前设备宽为："+width)
@@ -8,34 +8,39 @@ function IsPC() {
     var Agents = ["Android", "iPhone",
         "SymbianOS", "Windows Phone",
         "iPad", "iPod"];
-    var flag = true;
+    var flag = "PC";
     for (var v = 0; v < Agents.length; v++) {
         if (userAgentInfo.indexOf(Agents[v]) > 0) {
-            flag = false;
+            flag = "mobile";
             break;
         }
     }
-    return flag;
-}
-device_type = IsPC();
-//根据设备类型动态设置页面布局
-function setUI() {
-    console.log("devicetype:" + device_type)
-    if (device_type == false) {
-        // alert("移动设备！")
-        var searchtext = document.getElementById("searchtext");
-        var searchbox = document.getElementById("searchbox");
-        var search = document.getElementById("search");
-        searchbox.style.setProperty("left", "5px");
-        searchbox.style.setProperty("top", "5px");
-        // searchtext.style.setProperty("width", "85%");
-        // search.style.setProperty("width", "15%");
-        var route = document.getElementById("route");
-        route.style.setProperty("left", "5px");
-        route.style.setProperty("top", "40px");
+    if(flag=="mobile"){
+        document.getElementById("csslink").href="./css/main_mobile.css"
+    }
+    else{
+        document.getElementById("csslink").href="./css/main_pc.css"
     }
 }
-setUI();
+device_type = IsPC();
+// 根据设备类型动态设置页面布局
+// function setUI() {
+//     console.log("devicetype:" + device_type)
+//     if (device_type == false) {
+//         // alert("移动设备！")
+//         var searchtext = document.getElementById("searchtext");
+//         var searchbox = document.getElementById("searchbox");
+//         var search = document.getElementById("search");
+//         searchbox.style.setProperty("left", "5px");
+//         searchbox.style.setProperty("top", "5px");
+//         // searchtext.style.setProperty("width", "85%");
+//         // search.style.setProperty("width", "15%");
+//         var route = document.getElementById("route");
+//         route.style.setProperty("left", "5px");
+//         route.style.setProperty("top", "40px");
+//     }
+// }
+// setUI();
 
 function loadmap() {
     map = new mapboxgl.Map({
@@ -684,32 +689,6 @@ function locpoi() {
     map.off('click', endonclick);
     map.off('click', startonclick);
     map.on('click', locpoi_click);
-}
-
-//string2bytes
-function str2UTF8(str){
-	var bytes = new Array(); 
-	var len,c;
-	len = str.length;
-	for(var i = 0; i < len; i++){
-		c = str.charCodeAt(i);
-		if(c >= 0x010000 && c <= 0x10FFFF){
-			bytes.push(((c >> 18) & 0x07) | 0xF0);
-			bytes.push(((c >> 12) & 0x3F) | 0x80);
-			bytes.push(((c >> 6) & 0x3F) | 0x80);
-			bytes.push((c & 0x3F) | 0x80);
-		}else if(c >= 0x000800 && c <= 0x00FFFF){
-			bytes.push(((c >> 12) & 0x0F) | 0xE0);
-			bytes.push(((c >> 6) & 0x3F) | 0x80);
-			bytes.push((c & 0x3F) | 0x80);
-		}else if(c >= 0x000080 && c <= 0x0007FF){
-			bytes.push(((c >> 6) & 0x1F) | 0xC0);
-			bytes.push((c & 0x3F) | 0x80);
-		}else{
-			bytes.push(c & 0xFF);
-		}
-	}
-	return bytes;
 }
 
 //提交poi信息
