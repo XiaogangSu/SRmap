@@ -19,14 +19,15 @@ function IsPC() {
         document.getElementById("csslink").href="./css/main_mobile.css"
     }
     else{
-        document.getElementById("csslink").href="./css/main_pc.css"
+        document.getElementById("csslink").href="./css/main_mobile.css"
     }
+    // return(flag)
 }
 device_type = IsPC();
 // 根据设备类型动态设置页面布局
 // function setUI() {
 //     console.log("devicetype:" + device_type)
-//     if (device_type == false) {
+//     if (device_type == "mobile") {
 //         // alert("移动设备！")
 //         var searchtext = document.getElementById("searchtext");
 //         var searchbox = document.getElementById("searchbox");
@@ -67,7 +68,7 @@ loadmap();
 
 map.on('zoomend', function () {
     zoomlevel = map.getZoom().toFixed(1);
-    document.getElementById('zoom-level').innerHTML = 'Zoom Level: ' + zoomlevel;
+    document.getElementById('zoom-level').innerHTML = 'L:' + zoomlevel;
 });
 
 //获取url返回结果
