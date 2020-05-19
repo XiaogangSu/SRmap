@@ -19,7 +19,7 @@ function IsPC() {
         document.getElementById("csslink").href="./css/main_mobile.css"
     }
     else{
-        document.getElementById("csslink").href="./css/main_mobile.css"
+        document.getElementById("csslink").href="./css/main_pc.css"
     }
     // return(flag)
 }
