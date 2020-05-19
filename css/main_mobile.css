@@ -12,8 +12,10 @@ body {
     position: absolute;
     width: 70%;
     left: 15%;
-    top: 35%;
-    margin: 0; 
+    /* top: 10%; */
+    top:0;
+    bottom:0;
+    margin: auto; 
     padding: 0;
     background-color: rgb(190, 187, 187);
     z-index: 999;
@@ -68,15 +70,21 @@ body {
 }
 
 #searchbox{
-    width: 360px;
-    position: absolute;
+    position: fixed;
+    width: 98%;
     left: 5px;
+    right: 5px;
     top: 5px;
-    font-family: 'Microsoft YaHei';
+    margin:0 auto;
+    
+}
+#searchtab{
+    width:100%;
+    font-family:'Microsoft YaHei';
     font-size: 14px;
 }
 #searchtext{
-    width: 300px;
+    width: 100%;
     border: 1px solid #e7e4e4;
     height: 32px;
     float: left;
@@ -86,7 +94,7 @@ body {
     padding:0 0 0 20px;
 }
 #search{
-    width: 60px;
+    width: 100%;
     height: 32px;
     float: left;
     background: rgb(0, 0, 255);
@@ -169,24 +177,25 @@ body {
 #poi{
     position: absolute;
     left: 0px;
-    top: 36px;
-    margin-top: 5px;
+    top: 0px;
+    /* margin-top: 5px;
     margin-left: 5px;
-    margin-right: 50px; /*该设置无效，暂未找到解决办法*/
+    margin-right: 50px;  */
     border-radius: 5px;
-    width: 97%;
-    height: 65%;
-    background:#738ba5d2;
-    opacity: 0.9;
-    z-index: 97;
+    width: 100%;
+    height: 100%;
+    background:#697079;
+    opacity: 1;
+    z-index: 100;
     display:none;
 }
 #pic_container{
     position: relative;
     margin: 10px;
     width: 95%;
-    height: 40%;
-    background-color: blanchedalmond;
+    height: 30%;
+    border-radius: 3px;
+    background-color: rgb(202, 188, 173);
 }
 
 /*a  upload */
@@ -231,17 +240,41 @@ body {
 #take_photo{
     opacity:0.0;
 }
-#id_img{
+#id_img1{
     width: 30%;
-    margin: 10px;
+    margin: 5px;
     display: none;
 }
 #poi_info{
-    position: absolute;
-    left: 15px;
-    bottom: 50px;
+    position: relative;
+    /* left:5px; */
     border-spacing: 5px 5px;
+    width: 100%;
+    height: 50px;
 }
+#poi_info label{
+    font-size: 18px;
+    width: 100%;
+}
+#poi_info input{
+    font-size: 20px;
+    width: 100%;
+    border-radius: 3px;
+}
+.poi_btn{
+    line-height: 25px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.poi_btn:hover {
+    /* color: #444; */
+    /* background: rgba(180, 27, 27, 0.315); */
+    background-color: #ccc;
+    /* border-color: #ccc; */
+    /* text-decoration: none */
+}
+
 #endpoi{
     position: absolute;
     right:5px;
@@ -326,7 +359,7 @@ body {
     height: 20px;
     padding-left: 10px;
     padding-right: 10px;
-    z-index: 999;
+    z-index: 99;
     background:rgba(255, 255, 255, 0.3);
     left: 0px;
     bottom: 0px;

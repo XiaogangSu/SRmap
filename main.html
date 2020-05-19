@@ -28,13 +28,14 @@
         </tr>
     </table>
 
-
-    <table id="searchbox">
-        <tr>
-            <th><input id="searchtext" type="text" name="search" placeholder="Input key value"></th>
-            <th><button id="search" type="button">Search</button></th>
-        </tr>
-    </table>
+    <div id="searchbox">
+        <table id="searchtab">
+            <tr>
+                <th><input id="searchtext" type="text" name="search" placeholder="Input key value"></th>
+                <th><button id="search" type="button">Search</button></th>
+            </tr>
+        </table>
+    </div>
 
     <!-- 路径导航 -->
     <table id="route">
@@ -56,7 +57,11 @@
     </table>
     
     <div id="poi">
-        <img src="" id="id_img">
+        <div id='pic_container'>
+            <img src="" id="id_img1">
+            <!-- <img src="" id="id_img2"> -->
+        </div>
+        
         <button class='a-upload' function=getpic()>
             <input id="take_photo" type="file" multiple accept="image/*" capture="camera">
         </button>
@@ -67,33 +72,33 @@
                 <td></td>
             </tr>
         </table> -->
-        <div id='pic_container'></div>
-        <table id="poi_info">
+        
+        <table id="poi_info" border="0">
             <tr>
-                <th align="right"><label>Name:</label></th>
-                <th align="left"><input id="poiname" type="text" value="poi name"></th>
+                <th align="right" width="20px"><label>Name:</label></th>
+                <th align="left"><input id="poiname" type="text" value="Navinfo"></th>
             </tr>
             <tr>
                 <th align="right"><label>Address:</label></th>
-                <th align="left"><input id="poiaddress" type="text" value="poi address"></th>
+                <th align="left"><input id="poiaddress" type="text" value="Beijing Haidian"></th>
             </tr>
             <tr>
                 <th align="right"><label>Type:</label></th>
-                <th align="left"><input id="poitype" type="text" value="poi type"></th>
+                <th align="left"><input id="poitype" type="text" value="Company"></th>
             </tr>
             <tr>
                 <th align="right"><label>Phone:</label></th>
-                <th align="left"><input id="poiphone" type="text" value="+86"></th>
+                <th align="left"><input id="poiphone" type="text" value="18310870157"></th>
             </tr>
             <tr>
-                <th align="right"><button id="loc_poi" type="button" onclick=locpoi()>Location</button></th>
+                <th align="right"><button id="loc_poi" class="poi_btn" type="button" onclick=locpoi()>Location</button></th>
                 <th align="left"><input id="poiloc" type="text"></th>
             </tr>
             <tr>
-                <th align="right"><button type="button" onclick=subpoi()>Finish</button></th>
+                <th align="right"><button type="button" id="subpoi" class="poi_btn" onclick=subpoi()>Finish</button></th>
             </tr>
         </table>
-        <button id="endpoi" type="button" onclick=closepoi()></button>
+        <button id="endpoi" type="button"  onclick=closepoi()></button>
     </div>
 
     <table id="pos" border="0px">

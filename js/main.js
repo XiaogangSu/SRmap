@@ -634,9 +634,9 @@ $('#take_photo').change(function () {
     let fileReader = new FileReader();
     fileReader.readAsDataURL(fileObj);
     fileReader.onload = function () {
-        $('#id_img').attr('src', fileReader.result)
+        $('#id_img1').attr('src', fileReader.result)
     }
-    document.getElementById('id_img').style.display = 'inline';
+    document.getElementById('id_img1').style.display = 'inline';
 });
 
 //选择poi点位
